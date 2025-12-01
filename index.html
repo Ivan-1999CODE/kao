@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit 3 & 4 英文單字冒險</title>
+    <title>英文單字冒險 (Unit 3, 4 & Magazine)</title>
     
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -12,7 +12,6 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <!-- Import Map: 告訴瀏覽器當程式碼寫 'react' 時要去哪裡下載 -->
-    <!-- 使用 esm.sh CDN 來支援 ES Module 格式 -->
     <script type="importmap">
     {
         "imports": {
@@ -30,12 +29,27 @@
         
         /* 針對 iOS Safari 的一些優化 */
         * { -webkit-tap-highlight-color: transparent; }
+        
+        /* 自定義捲軸樣式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
     </style>
 </head>
 <body class="bg-sky-50">
     <div id="root"></div>
 
-    <!-- 這裡開始是 React 程式碼，注意 type="text/babel" 和 data-type="module" -->
+    <!-- 這裡開始是 React 程式碼 -->
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect } from 'react';
         import ReactDOM from 'react-dom/client';
@@ -43,10 +57,10 @@
             BookOpen, Gamepad2, LayoutList, Layers, Volume2, ChevronLeft, ChevronRight, 
             CheckCircle, XCircle, Trophy, Star, Sparkles, HelpCircle, RefreshCw, Library, 
             Puzzle, Lightbulb, Music, Map, Wand2, Flag, AlertCircle, ArrowDownLeft, 
-            Shuffle, GraduationCap, PenTool 
+            Shuffle, GraduationCap, PenTool, Coffee
         } from 'lucide-react';
 
-        // --- 資料庫 (Unit 3 & Unit 4 + 文法) ---
+        // --- 資料庫 (Unit 3, Unit 4, Magazine) ---
         const UNITS_DATA = {
         unit3: {
             title: "Unit 3",
@@ -69,7 +83,6 @@
             { id: "u3-16", word: "for example", part: "phr.", chinese: "例如", sentence: "I am a fan of baseball players, for example, Cheng-min.", sentence_ch: "我是棒球選手的粉絲，例如彭政閔。" },
             { id: "u3-17", word: "tell A from B", part: "phr.", chinese: "分辨 A 與 B", sentence: "It is hard to tell a fake bag from a real one.", sentence_ch: "很難分辨假包包和真包包。" }
             ],
-            // Unit 3 文法資料
             grammar: {
             notes: [
                 {
@@ -78,8 +91,7 @@
                 desc: "表示「看起來、聽起來、聞起來...」。注意：這裡要接『形容詞』來修飾主詞，不可用副詞！",
                 examples: [
                     "You look happy. (你起來很開心)",
-                    "The food smells good. (食物聞起來很香)",
-                    "It sounds great. (聽起來很棒)"
+                    "The food smells good. (食物聞起來很香)"
                 ]
                 },
                 {
@@ -92,15 +104,6 @@
                 ]
                 },
                 {
-                title: "重要片語 (Key Phrases)",
-                rule: "1. turn out (結果是)  2. tell A from B (分辨 A 與 B)",
-                desc: "turn out 常搭配 It turned out that... 句型。tell 在此不當「告訴」，而是「辨別/分辨」。",
-                examples: [
-                    "It turned out that he was lying. (結果他在說謊)",
-                    "Can you tell Tom from his twin brother? (你能分辨 Tom 和他的雙胞胎兄弟嗎？)"
-                ]
-                },
-                {
                 title: "連接詞 (Conjunctions) - 時間",
                 rule: "before (在...之前), after (在...之後), when (當...時), while (當...時)",
                 desc: "用來連接兩個子句，標示時間發生的順序。",
@@ -108,30 +111,15 @@
                     "Wash your hands before you eat.",
                     "He listened to music while he was studying."
                 ]
-                },
-                {
-                title: "連接詞 (Conjunctions) - 因果與讓步",
-                rule: "because (因為), although (雖然)",
-                desc: "Because 接原因；Although 接讓步語氣 (注意：Although 不可與 but 連用！)。",
-                examples: [
-                    "He was late because he missed the bus.",
-                    "Although it rained, we still played soccer."
-                ]
                 }
             ],
             quiz: [
-                { q: "The soup tastes ______.", options: ["good", "well", "like good"], ans: "good", hint: "Taste 接形容詞(good)，well 是副詞(或是指身體健康)。" },
+                { q: "The soup tastes ______.", options: ["good", "well", "like good"], ans: "good", hint: "Taste 接形容詞(good)，well 是副詞。" },
                 { q: "It sounds ______ a great idea.", options: ["like", "likes", "as"], ans: "like", hint: "Sound 後面接名詞(idea)，要加 like。" },
                 { q: "Can you ______ the real flower from the fake one?", options: ["say", "tell", "speak"], ans: "tell", hint: "tell A from B 分辨 A 與 B。" },
                 { q: "It ______ out that the answer was wrong.", options: ["turned", "took", "told"], ans: "turned", hint: "turn out 結果是/原來是。" },
                 { q: "You look ______ today.", options: ["happy", "happily", "happiness"], ans: "happy", hint: "Look 接形容詞修飾主詞。" },
-                { q: "The garbage smells ______.", options: ["terrible", "terribly", "like terrible"], ans: "terrible", hint: "Smell 接形容詞，不需要 like。" },
-                { q: "That cloud looks like ______.", options: ["a dog", "cute", "beautiful"], ans: "a dog", hint: "Look like 後面要接名詞。" },
-                { q: "______ the weather is cold, he wears a T-shirt.", options: ["Because", "Although", "So"], ans: "Although", hint: "雖然天氣冷(讓步語氣)..." },
-                { q: "We went home ______ the movie ended.", options: ["after", "during", "so"], ans: "after", hint: "電影結束『之後』我們回家。" },
-                { q: "He is sad ______ his cat is sick.", options: ["although", "but", "because"], ans: "because", hint: "表示原因：因為他的貓生病了。" },
-                { q: "Please finish your homework ______ you play games.", options: ["before", "while", "though"], ans: "before", hint: "玩遊戲『之前』先做完功課。" },
-                { q: "My mom was cooking ______ I was watching TV.", options: ["while", "because", "before"], ans: "while", hint: "當...的時候 (兩件事同時進行)。" }
+                { q: "That cloud looks like ______.", options: ["a dog", "cute", "beautiful"], ans: "a dog", hint: "Look like 後面要接名詞。" }
             ]
             }
         },
@@ -156,7 +144,6 @@
             { id: "u4-16", word: "all the time", part: "phr.", chinese: "總是；經常", sentence: "Mike is talking about his new game all the time.", sentence_ch: "Mike 總是在談論他的新遊戲。" },
             { id: "u4-17", word: "instead of", part: "phr.", chinese: "而不是；代替", sentence: "My sister bought a second-hand car instead of a new one.", sentence_ch: "我姊姊買了一輛二手車而不是新車。" }
             ],
-            // Unit 4 文法資料 (Updated)
             grammar: {
             notes: [
                 {
@@ -193,11 +180,41 @@
                 { q: "They made John ______ of the team.", options: ["the leader", "leading", "leaderly"], ans: "the leader", hint: "Make + O + N (讓他成為隊長)。" },
                 { q: "The cake ______ by Mom yesterday.", options: ["was baked", "is baked", "baked"], ans: "was baked", hint: "過去被動語態：was + Vpp (昨天被烤)。" },
                 { q: "English ______ all over the world.", options: ["speaks", "is spoken", "spoke"], ans: "is spoken", hint: "被動語態：Be + Vpp (英文是被講的)。" },
-                { q: "The homework ______ finished before dinner.", options: ["was", "did", "made"], ans: "was", hint: "作業『被』完成：was finished。" },
-                { q: "The loud noise made the baby ______.", options: ["scared", "to scare", "scaring"], ans: "scared", hint: "Make + O + Adj (使寶寶感到害怕-形容詞)。" },
                 { q: "This picture was painted ______ Picasso.", options: ["by", "with", "for"], ans: "by", hint: "被動語態中，動作執行者前用 by。" }
             ]
             }
+        },
+        magazine: {
+            title: "雜誌 (Magazine)",
+            vocab: [
+                { id: "m-1", word: "universal", part: "adj.", chinese: "全世界的；普遍的", sentence: "The doctor's medical research has earned her universal praise.", sentence_ch: "這位醫生的醫學研究為她贏得了全世界的讚譽。" },
+                { id: "m-2", word: "delight", part: "v.", chinese: "使高興", sentence: "Our grandkids were delighted to hear that we were taking them to Disney World!", sentence_ch: "我們的孫子們聽到我們要帶他們去迪士尼世界都很高興！" },
+                { id: "m-3", word: "compose", part: "v.", chinese: "創作；作曲", sentence: "Taylor Swift composed some of her first songs at the age of 12.", sentence_ch: "泰勒絲在 12 歲時創作了她最初的一些歌曲。" },
+                { id: "m-4", word: "proceed", part: "v.", chinese: "繼續進行；開始", sentence: "The stranger sat down and proceeded to tell me about himself.", sentence_ch: "那個陌生人坐下來，開始跟我講述他自己的事。" },
+                { id: "m-5", word: "admiration", part: "n.", chinese: "讚賞；欽佩", sentence: "After reading about Celine Dion's struggles, my admiration for her increased.", sentence_ch: "讀了席琳狄翁的奮鬥故事後，我對她的欽佩增加了。" },
+                { id: "m-6", word: "grief", part: "n.", chinese: "悲痛，悲傷", sentence: "There was a huge display of grief over the death of the local mayor.", sentence_ch: "當地市長的去世引起了巨大的悲痛。" },
+                { id: "m-7", word: "therapy", part: "n.", chinese: "治療；療法", sentence: "After her fall, Kelsey had to go to therapy for six weeks.", sentence_ch: "Kelsey 跌倒後，必須接受六週的治療。" },
+                { id: "m-8", word: "nonetheless", part: "adv.", chinese: "儘管；但是", sentence: "The weather was terrible, but Jana was determined to go shopping, nonetheless.", sentence_ch: "儘管天氣很糟，Jana 還是決心去購物。" },
+                { id: "m-9", word: "sensation", part: "n.", chinese: "轟動的事件", sentence: "The popular Korean boy band BTS became an international sensation soon after their debut in 2013.", sentence_ch: "韓國流行男團 BTS 在 2013 年出道後不久就成為國際轟動的焦點。" },
+                { id: "m-10", word: "demanding", part: "adj.", chinese: "耗費精力的", sentence: "Chris has a demanding job that keeps him stressed out.", sentence_ch: "Chris 有一份耗費精力的工作，讓他壓力很大。" },
+                { id: "m-11", word: "aware", part: "adj.", chinese: "意識到的", sentence: "The policeman asked the driver if he was aware of how fast he was driving.", sentence_ch: "警察問司機是否意識到他開得有多快。" },
+                { id: "m-12", word: "achieve", part: "v.", chinese: "實現；達成", sentence: "Paula has no idea how to achieve the goals her boss has set for her.", sentence_ch: "Paula 不知道如何達成老闆為她設定的目標。" },
+                { id: "m-13", word: "emphasis", part: "n.", chinese: "強調；重視", sentence: "The teacher placed an emphasis on being on time for class.", sentence_ch: "老師強調上課要準時。" },
+                { id: "m-14", word: "enjoyable", part: "adj.", chinese: "令人愉快的", sentence: "Cindy finds summer sports more enjoyable than winter sports.", sentence_ch: "Cindy 覺得夏季運動比冬季運動更令人愉快。" },
+                { id: "m-15", word: "chew", part: "v.", chinese: "咀嚼", sentence: "The dog was so hungry that it didn't chew its food but swallowed it whole.", sentence_ch: "那隻狗太餓了，食物沒咬就整個吞了下去。" },
+                { id: "m-16", word: "hunger", part: "n.", chinese: "飢餓", sentence: "Sheila satisfied her hunger by eating a peanut butter sandwich.", sentence_ch: "Sheila 吃了一個花生醬三明治來充飢。" },
+                { id: "m-17", word: "adopt", part: "v.", chinese: "養成習慣；採用", sentence: "Jordan adopted the practice of doing her homework right after school.", sentence_ch: "Jordan 養成了放學後馬上做功課的習慣。" },
+                { id: "m-18", word: "accomplish", part: "v.", chinese: "實現；完成", sentence: "No one knows how Samuel accomplishes so much in one day.", sentence_ch: "沒人知道 Samuel 如何在一天內完成這麼多事。" },
+                { id: "m-19", word: "obtain", part: "v.", chinese: "得到，獲得", sentence: "Has he obtained all the necessary papers yet?", sentence_ch: "他拿到所有必要的文件了嗎？" },
+                { id: "m-20", word: "calorie", part: "n.", chinese: "卡路里", sentence: "There are a lot of calories in that dessert.", sentence_ch: "那份甜點熱量很高。" },
+                { id: "m-21", word: "processed", part: "adj.", chinese: "加工過的", sentence: "Wilma doesn't eat much processed food.", sentence_ch: "Wilma 不太吃加工食品。" },
+                { id: "m-22", word: "inexpensive", part: "adj.", chinese: "價錢不貴的", sentence: "Where can I buy an inexpensive camera?", sentence_ch: "哪裡可以買到便宜的相機？" },
+                { id: "m-23", word: "combo", part: "n.", chinese: "套餐；組合", sentence: "She wore a fashionable skirt and top combo.", sentence_ch: "她穿著一套時尚的裙子和上衣組合。" },
+                { id: "m-24", word: "intend", part: "v.", chinese: "打算，計畫", sentence: "When do you intend to finish that project?", sentence_ch: "你打算什麼時候完成那個專案？" },
+                { id: "m-25", word: "consistent", part: "adj.", chinese: "一致的", sentence: "With consistent practice, you can improve.", sentence_ch: "透過持續的練習，你可以進步。" },
+                { id: "m-26", word: "plastic", part: "adj.", chinese: "塑膠的", sentence: "Can you buy more of these plastic chairs?", sentence_ch: "你可以多買幾張這種塑膠椅嗎？" }
+            ],
+            // grammar removed
         }
         };
 
@@ -314,10 +331,10 @@
                         <div className="absolute bottom-3 right-3 w-3 h-3 rounded-full bg-slate-200 border border-slate-300"></div>
 
                         <div className="absolute top-4 right-6 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-sm font-black border-2 border-yellow-600 shadow-sm rotate-3">
-                            Level {currentIndex + 1}
+                            {currentIndex + 1} / {data.length}
                         </div>
                         
-                        <h2 className="text-4xl font-black text-slate-800 mb-2 tracking-tight text-center break-words w-full drop-shadow-sm">{currentWord.word}</h2>
+                        <h2 className="text-3xl sm:text-4xl font-black text-slate-800 mb-2 tracking-tight text-center break-words w-full drop-shadow-sm">{currentWord.word}</h2>
                         <span className="text-white bg-sky-500 font-bold px-4 py-1.5 rounded-xl text-lg shadow-md border-b-4 border-sky-700 transform -rotate-2">{currentWord.part}</span>
                         
                         <div className="mt-10 text-slate-400 text-xs font-bold flex items-center gap-1 animate-pulse bg-slate-100 px-3 py-1 rounded-full">
@@ -341,16 +358,17 @@
                         }}
                     >
                         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white to-transparent pointer-events-none"></div>
-                        <h3 className="text-3xl font-black mb-6 text-center leading-snug drop-shadow-md bg-white/20 px-4 py-2 rounded-xl backdrop-blur-sm border-2 border-white/30 transform -rotate-1">{currentWord.chinese}</h3>
+                        <h3 className="text-2xl sm:text-3xl font-black mb-4 text-center leading-snug drop-shadow-md bg-white/20 px-4 py-2 rounded-xl backdrop-blur-sm border-2 border-white/30 transform -rotate-1">{currentWord.chinese}</h3>
                         
-                        <div className="bg-black/20 p-4 rounded-xl border-2 border-white/10 w-full relative">
+                        <div className="bg-black/20 p-4 rounded-xl border-2 border-white/10 w-full relative overflow-y-auto max-h-[140px]">
                             <Sparkles className="absolute -top-3 -right-3 text-yellow-300 w-6 h-6 animate-bounce" />
-                            <p className="text-white text-center italic text-base leading-relaxed font-bold">"{currentWord.sentence}"</p>
+                            <p className="text-white text-center italic text-sm sm:text-base leading-relaxed font-bold">"{currentWord.sentence}"</p>
+                            <p className="text-violet-200 text-center text-xs mt-2 font-medium">{currentWord.sentence_ch}</p>
                         </div>
                         
                         <button 
                         onClick={(e) => { e.stopPropagation(); speakText(currentWord.sentence); }}
-                        className="mt-6 p-3 bg-yellow-400 text-yellow-900 rounded-full border-b-4 border-yellow-600 active:border-b-0 active:translate-y-1 transition-all shadow-md"
+                        className="mt-4 p-3 bg-yellow-400 text-yellow-900 rounded-full border-b-4 border-yellow-600 active:border-b-0 active:translate-y-1 transition-all shadow-md"
                         >
                         <Volume2 className="w-5 h-5" />
                         </button>
@@ -1022,12 +1040,12 @@
                         <span>MAP</span>
                     </div>
                     <div className="flex gap-2">
-                        {['unit3', 'unit4'].map(uKey => (
+                        {['unit3', 'unit4', 'magazine'].map(uKey => (
                         <button
                             key={uKey}
                             onClick={() => setCurrentUnit(uKey)}
                             className={`
-                            px-4 py-1 text-sm font-black rounded-xl transition-all border-b-4 active:border-b-0 active:translate-y-1
+                            px-3 py-1 text-xs sm:text-sm font-black rounded-xl transition-all border-b-4 active:border-b-0 active:translate-y-1
                             ${currentUnit === uKey 
                                 ? 'bg-sky-500 border-sky-700 text-white shadow-sky-200' 
                                 : 'bg-white border-slate-300 text-slate-400 hover:bg-slate-50'}
