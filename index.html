@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>英文單字冒險 (Unit 5 & 6)</title>
+    <title>英文單字冒險 (Unit 5 & 6) - 文法擴充版</title>
     
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -67,7 +67,7 @@
             CheckCircle, XCircle, Trophy, Star, Sparkles, HelpCircle, RefreshCw, Library, 
             Puzzle, Lightbulb, Music, Map, Wand2, Flag, AlertCircle, ArrowDownLeft, 
             Shuffle, GraduationCap, PenTool, Coffee, Keyboard, MousePointerClick, Filter, Eye, Timer, Home, Info,
-            FileText, X, Lock // Lock 圖示
+            FileText, X 
         } from 'lucide-react';
 
         // --- 語音與音效合成優化 ---
@@ -153,93 +153,110 @@
             return newArray;
         };
 
-        // --- Unit 5 文法題庫生成 (授與動詞 & Not only but also) ---
+        // --- Unit 5 文法題庫生成 (50題: 授與動詞 & Not only but also) ---
         const generateUnit5QuizPool = () => {
             const pool = [
-                // --- 授與動詞 (Dative Verbs) ---
-                // TO group (give, send, show, lend, sell, write, teach, tell, bring)
-                { q: "My American friend sent a postcard ______ me.", options: ["to", "for", "of"], ans: "to", hint: "send (寄) 是授與動詞，用 to。" },
-                { q: "Linda showed her drawings ______ us.", options: ["to", "for", "with"], ans: "to", hint: "show (展示) 是授與動詞，用 to。" },
-                { q: "Eddie brought a DVD ______ his classmate.", options: ["to", "for", "at"], ans: "to", hint: "bring (帶給) 用 to。" },
-                { q: "Tina gave a cup of tea ______ her guest.", options: ["to", "for", "on"], ans: "to", hint: "give (給) 是授與動詞，用 to。" },
-                { q: "Please lend your pen ______ me.", options: ["to", "for", "of"], ans: "to", hint: "lend (借出) 是授與動詞，用 to。" },
-                { q: "He sold his old car ______ a neighbor.", options: ["to", "for", "at"], ans: "to", hint: "sell (賣) 是授與動詞，用 to。" },
+                // --- Group 1: 授與動詞 TO (give, send, show, lend, sell, write, teach, tell, bring, pass, hand, read) ---
+                { q: "My friend sent a postcard ______ me.", options: ["to", "for", "of"], ans: "to", hint: "send (寄) 是授與動詞，介系詞用 to。" },
+                { q: "Linda showed her drawings ______ us.", options: ["to", "for", "with"], ans: "to", hint: "show (展示) 是授與動詞，介系詞用 to。" },
+                { q: "Please lend your pen ______ me.", options: ["to", "for", "of"], ans: "to", hint: "lend (借出) 是授與動詞，介系詞用 to。" },
+                { q: "He sold his old car ______ a neighbor.", options: ["to", "for", "at"], ans: "to", hint: "sell (賣) 是授與動詞，介系詞用 to。" },
                 { q: "I wrote a letter ______ my grandmother.", options: ["to", "for", "with"], ans: "to", hint: "write (寫信) 給人用 to。" },
-                { q: "The teacher taught English ______ the students.", options: ["to", "for", "by"], ans: "to", hint: "teach (教) 是授與動詞，用 to。" },
-                { q: "Can you tell the truth ______ him?", options: ["to", "for", "of"], ans: "to", hint: "tell (告訴) 是授與動詞，用 to。" },
-                { q: "Pass the salt ______ me, please.", options: ["to", "for", "at"], ans: "to", hint: "pass (傳遞) 是授與動詞，用 to。" },
-                { q: "Hand the paper ______ the teacher.", options: ["to", "for", "in"], ans: "to", hint: "hand (遞交) 是授與動詞，用 to。" },
-                { q: "She read a story ______ her little brother.", options: ["to", "for", "of"], ans: "to", hint: "read (讀給...聽) 通常用 to。" },
-                
-                // FOR group (buy, get, make, cook, find, order, save, build)
-                { q: "Cindy got a bone ______ her dog.", options: ["for", "to", "of"], ans: "for", hint: "get (幫忙拿/買) 是授與動詞，用 for。" },
-                { q: "Richard bought a pet dog ______ his son.", options: ["for", "to", "of"], ans: "for", hint: "buy (買) 是授與動詞，用 for。" },
-                { q: "Mom made a cake ______ us.", options: ["for", "to", "with"], ans: "for", hint: "make (做) 是授與動詞，用 for。" },
-                { q: "My dad cooked dinner ______ the family.", options: ["for", "to", "at"], ans: "for", hint: "cook (煮) 是授與動詞，用 for。" },
-                { q: "Can you find a chair ______ me?", options: ["for", "to", "of"], ans: "for", hint: "find (找) 是授與動詞，用 for。" },
-                { q: "He ordered a pizza ______ his friends.", options: ["for", "to", "on"], ans: "for", hint: "order (點餐) 是授與動詞，用 for。" },
-                { q: "They built a new house ______ the poor family.", options: ["for", "to", "of"], ans: "for", hint: "build (建造) 是授與動詞，用 for。" },
-                { q: "Please save a seat ______ me.", options: ["for", "to", "at"], ans: "for", hint: "save (保留) 是授與動詞，用 for。" },
-                { q: "I'll get a ticket ______ you.", options: ["for", "to", "of"], ans: "for", hint: "get (取得) 用 for。" },
-                { q: "She bought a present ______ her mother.", options: ["for", "to", "at"], ans: "for", hint: "buy (買) 用 for。" },
+                { q: "The teacher taught English ______ the students.", options: ["to", "for", "by"], ans: "to", hint: "teach (教) 是授與動詞，介系詞用 to。" },
+                { q: "Give the book ______ him.", options: ["to", "for", "of"], ans: "to", hint: "give (給) 是授與動詞，介系詞用 to。" },
+                { q: "Eddie brought a DVD ______ his classmate.", options: ["to", "for", "at"], ans: "to", hint: "bring (帶給) 介系詞用 to。" },
+                { q: "Please pass the salt ______ me.", options: ["to", "for", "at"], ans: "to", hint: "pass (傳遞) 用 to。" },
+                { q: "Hand the paper ______ the teacher.", options: ["to", "for", "in"], ans: "to", hint: "hand (遞交) 用 to。" },
+                { q: "Can you tell the story ______ the kids?", options: ["to", "for", "with"], ans: "to", hint: "tell (告訴) 用 to。" },
+                { q: "She read the news ______ her father.", options: ["to", "for", "at"], ans: "to", hint: "read (讀給...聽) 用 to。" },
+                { q: "He threw the ball ______ me.", options: ["to", "for", "of"], ans: "to", hint: "throw (丟給) 用 to。" },
+                { q: "I sent an email ______ my boss.", options: ["to", "for", "with"], ans: "to", hint: "send (寄送) 用 to。" },
+                { q: "Show your ticket ______ the guard.", options: ["to", "for", "at"], ans: "to", hint: "show (出示) 用 to。" },
 
-                // S + V + IO + DO (無介系詞結構)
-                { q: "Hank sent ______ a postcard.", options: ["me", "to me", "for me"], ans: "me", hint: "S + V + IO(人) + DO(物)時，人前不加介系詞。" },
-                { q: "Cindy got her dog ______.", options: ["a bone", "to a bone", "for a bone"], ans: "a bone", hint: "S + V + IO(人) + DO(物)時，物前不加介系詞。" },
-                { q: "Please show ______ your ticket.", options: ["me", "to me", "for me"], ans: "me", hint: "show + 人 + 物。" },
-                { q: "My father bought ______ a new bike.", options: ["my brother", "to my brother", "for my brother"], ans: "my brother", hint: "buy + 人 + 物。" },
+                // --- Group 2: 授與動詞 FOR (buy, get, make, cook, find, order, save, build) ---
+                { q: "Mom made a cake ______ us.", options: ["for", "to", "with"], ans: "for", hint: "make (做) 是授與動詞，介系詞用 for (為了...而做)。" },
+                { q: "My dad cooked dinner ______ the family.", options: ["for", "to", "at"], ans: "for", hint: "cook (煮) 是授與動詞，介系詞用 for。" },
+                { q: "Richard bought a pet dog ______ his son.", options: ["for", "to", "of"], ans: "for", hint: "buy (買) 是授與動詞，介系詞用 for。" },
+                { q: "Can you find a chair ______ me?", options: ["for", "to", "of"], ans: "for", hint: "find (找) 是授與動詞，介系詞用 for。" },
+                { q: "He ordered a pizza ______ his friends.", options: ["for", "to", "on"], ans: "for", hint: "order (點餐) 是授與動詞，介系詞用 for。" },
+                { q: "Please save a seat ______ me.", options: ["for", "to", "at"], ans: "for", hint: "save (保留) 是授與動詞，介系詞用 for。" },
+                { q: "They built a house ______ the poor.", options: ["for", "to", "at"], ans: "for", hint: "build (建造) 用 for。" },
+                { q: "I will get a ticket ______ you.", options: ["for", "to", "of"], ans: "for", hint: "get (取得/幫忙拿) 用 for。" },
+                { q: "She baked some cookies ______ the children.", options: ["for", "to", "at"], ans: "for", hint: "bake (烘烤) 類似 cook，用 for。" },
+                { q: "Choose a gift ______ your mother.", options: ["for", "to", "of"], ans: "for", hint: "choose (挑選) 用 for。" },
+                { q: "Can you fix the bike ______ him?", options: ["for", "to", "at"], ans: "for", hint: "fix (修理) 為了某人，用 for。" },
+                { q: "Leave some food ______ me.", options: ["for", "to", "at"], ans: "for", hint: "leave (留給) 用 for。" },
+                { q: "He prepared a meal ______ his wife.", options: ["for", "to", "of"], ans: "for", hint: "prepare (準備) 用 for。" },
+                { q: "Win a prize ______ our team.", options: ["for", "to", "at"], ans: "for", hint: "win (贏得) 為了...用 for。" },
+
+                // --- Group 3: 授與動詞 (無介系詞結構 S + V + IO + DO) ---
+                { q: "Hank sent ______ a postcard.", options: ["me", "to me", "for me"], ans: "me", hint: "S + V + IO(人) + DO(物) 時，人前面不需要介系詞。" },
+                { q: "My father bought ______ a new bike.", options: ["my brother", "to my brother", "for my brother"], ans: "my brother", hint: "buy + 人 + 物，人直接放動詞後，不加介系詞。" },
                 { q: "Give ______ the book.", options: ["him", "to him", "for him"], ans: "him", hint: "give + 人 + 物。" },
                 { q: "She made ______ a nice dress.", options: ["her daughter", "to her daughter", "for her daughter"], ans: "her daughter", hint: "make + 人 + 物。" },
+                { q: "Show ______ your homework.", options: ["me", "to me", "for me"], ans: "me", hint: "show + 人 + 物。" },
+                { q: "Please pass ______ the salt.", options: ["me", "to me", "for me"], ans: "me", hint: "pass + 人 + 物。" },
+                { q: "He told ______ a story.", options: ["us", "to us", "for us"], ans: "us", hint: "tell + 人 + 物。" },
+                { q: "I will get ______ a drink.", options: ["you", "to you", "for you"], ans: "you", hint: "get + 人 + 物。" },
 
-                // --- 對等連接詞 (Not only... but also...) ---
-                // 詞性一致 (Parallel Structure)
-                { q: "The window is not only clean ______ bright.", options: ["but also", "and", "or"], ans: "but also", hint: "not only... but also... 連接形容詞。" },
-                { q: "The kid can not only draw but also ______.", options: ["write", "writing", "wrote"], ans: "write", hint: "助動詞 can 後接原形，draw 對應 write。" },
-                { q: "Daniel can speak not only English but also ______.", options: ["Japanese", "Japan", "to Japanese"], ans: "Japanese", hint: "連接兩個名詞 (語言)。" },
-                { q: "Will bought not only a new smartphone ______ a computer.", options: ["but also", "and", "or"], ans: "but also", hint: "連接兩個名詞 (物品)。" },
-                { q: "Irene not only does part-time work but also ______ biking.", options: ["goes", "go", "going"], ans: "goes", hint: "does 對應 goes (第三人稱單數)。" },
-                { q: "He is not only smart but also ______.", options: ["kind", "kindness", "kindly"], ans: "kind", hint: "smart (Adj) 對應 kind (Adj)。" },
-                { q: "She speaks not only loudly but also ______.", options: ["clearly", "clear", "clearness"], ans: "clearly", hint: "loudly (Adv) 對應 clearly (Adv)。" },
+                // --- Group 4: Not only... but also (平行結構) ---
+                { q: "The window is not only clean ______ bright.", options: ["but also", "and", "or"], ans: "but also", hint: "not only... but also... 連接兩個形容詞。" },
+                { q: "The kid can not only draw but also ______.", options: ["write", "writing", "wrote"], ans: "write", hint: "助動詞 can 後接原形，draw (V) 對應 write (V)。" },
+                { q: "He is famous not only ______ his songs but also for his acting.", options: ["for", "to", "with"], ans: "for", hint: "介系詞片語要對稱：famous FOR... but also FOR...。" },
+                { q: "She speaks not only loudly but also ______.", options: ["clearly", "clear", "clearness"], ans: "clearly", hint: "loudly (副詞) 對應 clearly (副詞)。" },
+                { q: "Daniel can speak not only English but also ______.", options: ["Japanese", "Japan", "to Japanese"], ans: "Japanese", hint: "English (N) 對應 Japanese (N)。" },
+                { q: "He is not only a teacher but also ______.", options: ["a writer", "write", "writing"], ans: "a writer", hint: "a teacher (N) 對應 a writer (N)。" },
                 { q: "I like to not only swim but also ______.", options: ["run", "running", "ran"], ans: "run", hint: "to swim (V) 對應 run (V)。" },
-                { q: "The movie was not only boring but also ______.", options: ["long", "length", "lonely"], ans: "long", hint: "boring (Adj) 對應 long (Adj)。" },
+                { q: "The soup is not only hot but also ______.", options: ["delicious", "deliciously", "delight"], ans: "delicious", hint: "hot (Adj) 對應 delicious (Adj)。" },
                 
-                // 動詞一致 (Proximity Rule - 靠近原則)
-                { q: "Not only the moon but also the lights ______ bright.", options: ["are", "is", "be"], ans: "are", hint: "動詞與靠近的主詞 (the lights) 一致。" },
-                { q: "Not only Sam but also Cali ______ at a FamilyMart store.", options: ["works", "work", "working"], ans: "works", hint: "動詞與靠近的主詞 (Cali) 一致，用單數。" },
-                { q: "Not only my uncle but also my aunt ______ to Tokyo.", options: ["went", "go", "going"], ans: "went", hint: "過去式動詞無單複數變化。" },
+                // --- Group 5: Not only... but also (主詞一致性 Proximity Rule) ---
+                { q: "Not only the moon but also the lights ______ bright.", options: ["are", "is", "be"], ans: "are", hint: "動詞變化看靠近的主詞 (the lights 是複數)。" },
+                { q: "Not only Sam but also Cali ______ at the store.", options: ["works", "work", "working"], ans: "works", hint: "動詞看靠近的主詞 (Cali 是單數)，所以加 s。" },
                 { q: "Not only you but also I ______ a student.", options: ["am", "are", "is"], ans: "am", hint: "靠近的主詞是 I，動詞用 am。" },
                 { q: "Not only I but also you ______ responsible.", options: ["are", "am", "is"], ans: "are", hint: "靠近的主詞是 you，動詞用 are。" },
                 { q: "Not only the teacher but also the students ______ happy.", options: ["look", "looks", "looking"], ans: "look", hint: "students 是複數，動詞用 look。" },
                 { q: "Not only the students but also the teacher ______ happy.", options: ["looks", "look", "looking"], ans: "looks", hint: "teacher 是單數，動詞用 looks。" },
-                { q: "Not only Tom but also his brothers ______ to play basketball.", options: ["like", "likes", "liking"], ans: "like", hint: "brothers 是複數，動詞用 like。" },
-                { q: "Not only the players but also the coach ______ nervous.", options: ["was", "were", "be"], ans: "was", hint: "coach 是單數，過去式用 was。" },
-                
-                // 綜合/進階
-                { q: "He is famous not only ______ his songs but also for his acting.", options: ["for", "to", "with"], ans: "for", hint: "famous for... 對應 famous for...。" },
-                { q: "Not only ______ but also his parents are coming.", options: ["he", "him", "his"], ans: "he", hint: "主詞位置用主格。" },
-                { q: "My mom gave ______ a watch.", options: ["me", "to me", "for me"], ans: "me", hint: "S + V + IO + DO。" },
-                { q: "My mom gave a watch ______.", options: ["to me", "me", "for me"], ans: "to me", hint: "S + V + DO + prep + IO。" }
+                { q: "Not only Tom but also his brothers ______ soccer.", options: ["like", "likes", "liking"], ans: "like", hint: "brothers 是複數，動詞用 like。" },
+                { q: "Not only the players but also the coach ______ nervous.", options: ["was", "were", "be"], ans: "was", hint: "coach 是單數，過去式用 was。" }
             ];
             return shuffleArray(pool);
         };
 
-        // --- Unit 5 文法重組生成器 (授與動詞 & Not only but also) ---
+        // --- Unit 5 文法重組句子 (嚴格符合文法規則) ---
         const generateUnit5GrammarScramble = () => {
             const sentences = [
-                { s: "My American friend sent a postcard to me.", ch: "我的美國朋友寄了一張明信片給我。" },
-                { s: "Cindy got a bone for her dog.", ch: "Cindy 弄了一根骨頭給她的狗。" },
+                // Dative Verbs (To)
+                { s: "My friend sent a postcard to me.", ch: "我的朋友寄了一張明信片給我。" },
                 { s: "Linda showed her drawings to us.", ch: "Linda 展示她的畫給我們看。" },
                 { s: "Eddie brought a DVD to his classmate.", ch: "Eddie 帶了一張DVD給他的同學。" },
-                { s: "Richard bought a pet dog for his son.", ch: "Richard 買了一隻寵物狗給他兒子。" },
                 { s: "Tina gave a cup of tea to her guest.", ch: "Tina 給了她的客人一杯茶。" },
+                { s: "I wrote a letter to my grandmother.", ch: "我寫了一封信給我的祖母。" },
+                { s: "Please lend your pen to me.", ch: "請把你的筆借給我。" },
+                { s: "Pass the salt to me.", ch: "請把鹽傳給我。" },
+                
+                // Dative Verbs (For)
+                { s: "Cindy got a bone for her dog.", ch: "Cindy 弄了一根骨頭給她的狗。" },
+                { s: "Richard bought a pet dog for his son.", ch: "Richard 買了一隻寵物狗給他兒子。" },
+                { s: "My dad cooked dinner for the family.", ch: "我爸爸為全家人煮晚餐。" },
+                { s: "They built a new house for the poor family.", ch: "他們為這貧困家庭蓋了一間新房子。" },
+                { s: "Mom made a cake for us.", ch: "媽媽為我們做了一個蛋糕。" },
+                { s: "He ordered a pizza for his friends.", ch: "他為他的朋友們點了一個披薩。" },
+                { s: "Please save a seat for me.", ch: "請幫我留個位子。" },
+
+                // S + V + IO + DO (無介系詞)
+                { s: "My mom gave me a watch.", ch: "我媽媽給了我一支手錶。" },
+                { s: "He sent her a flower.", ch: "他送了她一朵花。" },
+                { s: "Please show me your ticket.", ch: "請出示你的票給我看。" },
+
+                // Not only... but also...
                 { s: "The window is not only clean but also bright.", ch: "這扇窗戶不僅乾淨而且明亮。" },
                 { s: "The kid can not only draw but also write.", ch: "這孩子不僅會畫畫還會寫字。" },
-                { s: "Not only the moon but also the lights are bright.", ch: "不僅月亮，連燈光也很亮。" },
-                { s: "Not only Sam but also Cali works at a FamilyMart store.", ch: "不僅 Sam，連 Cali 也在全家便利商店工作。" },
+                { s: "Not only the moon but also the lights are bright.", ch: "不僅月亮，連燈光也很亮。(動詞配合 lights)" },
+                { s: "Not only Sam but also Cali works at the store.", ch: "不僅 Sam，連 Cali 也在店裡工作。(動詞配合 Cali)" },
                 { s: "Daniel can speak not only English but also Japanese.", ch: "Daniel 不僅會說英文還會說日文。" },
-                { s: "Will bought not only a new smartphone but also a computer.", ch: "Will 不僅買了新手機還買了電腦。" },
-                { s: "Not only my uncle but also my aunt went to Tokyo.", ch: "不僅我舅舅，連我阿姨也去了東京。" },
-                { s: "Irene not only does part-time work but also goes biking.", ch: "Irene 不僅做兼職工作還會去騎腳踏車。" }
+                { s: "Not only you but also I am a student.", ch: "不僅你，我也是學生。(動詞配合 I)" },
+                { s: "She speaks not only loudly but also clearly.", ch: "她說話不僅大聲而且清楚。" },
+                { s: "He is famous not only for his songs but also for his acting.", ch: "他不只以歌曲聞名，也以演技著稱。" }
             ];
             return sentences.map((item, index) => ({
                 id: `u5-grammar-sc-${index}`,
@@ -248,89 +265,100 @@
             }));
         };
 
-        // --- Unit 6 文法題庫生成 (不定詞/動名詞主詞 & 祈使句) ---
+        // --- Unit 6 文法題庫生成 (50題: 動名詞/不定詞主詞 & 祈使句) ---
         const generateUnit6QuizPool = () => {
             const pool = [
-                // --- 不定詞 / 動名詞當主詞 (Gerunds/Infinitives as Subjects) ---
-                // 動詞單複數 (Singular Verb)
+                // --- Group 1: 動名詞/不定詞當主詞 (視為單數，動詞用單數) ---
                 { q: "______ to music helps me relax.", options: ["Listening", "Listen", "Listens"], ans: "Listening", hint: "動名詞 (V-ing) 當主詞。" },
-                { q: "To train a service dog ______ not easy.", options: ["is", "are", "be"], ans: "is", hint: "不定詞當主詞視為單數。" },
+                { q: "To train a service dog ______ not easy.", options: ["is", "are", "be"], ans: "is", hint: "不定詞 (To V) 當主詞視為單數，動詞用 is。" },
                 { q: "______ my music with people is a wonderful thing.", options: ["To share", "Share", "Shared"], ans: "To share", hint: "不定詞 (To V) 當主詞。" },
-                { q: "Being famous ______ tiring.", options: ["is", "are", "be"], ans: "is", hint: "動名詞片語當主詞視為單數。" },
-                { q: "Talking to my fans ______ me happy.", options: ["makes", "make", "making"], ans: "makes", hint: "主詞是 Talking (單數)，動詞 make 加 s。" },
-                { q: "Reading comic books ______ fun.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Reading (單數)，不是 books。" },
-                { q: "Playing video games ______ exciting.", options: ["is", "are", "were"], ans: "is", hint: "主詞是 Playing (單數)，不是 games。" },
-                { q: "Collecting stamps ______ his hobby.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Collecting (單數)。" },
+                { q: "Being famous ______ tiring.", options: ["is", "are", "be"], ans: "is", hint: "動名詞片語當主詞，視為單數。" },
+                { q: "Talking to my fans ______ me happy.", options: ["makes", "make", "making"], ans: "makes", hint: "主詞 Talking 是單數，動詞 make 要加 s。" },
+                { q: "Reading comic books ______ fun.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Reading (這件事)，而不是 books，所以用單數 is。" },
+                { q: "Playing video games ______ exciting.", options: ["is", "are", "were"], ans: "is", hint: "主詞是 Playing，動詞用單數。" },
                 { q: "______ English is important.", options: ["Learning", "Learn", "Learns"], ans: "Learning", hint: "動名詞當主詞。" },
-                { q: "To swim in the river ______ dangerous.", options: ["is", "are", "am"], ans: "is", hint: "不定詞當主詞視為單數。" },
-                { q: "Eating too much junk food ______ bad for you.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Eating (單數)。" },
-                { q: "Taking pictures ______ interesting.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Taking (單數)。" },
-                { q: "Making friends ______ easy for him.", options: ["is", "are", "were"], ans: "is", hint: "主詞是 Making (單數)。" },
-                { q: "To become a doctor ______ hard work.", options: ["takes", "take", "taking"], ans: "takes", hint: "不定詞當主詞，動詞用單數。" },
-                { q: "Watching movies ______ my favorite hobby.", options: ["is", "are", "be"], ans: "is", hint: "動名詞當主詞。" },
                 { q: "______ early is a good habit.", options: ["Getting up", "Get up", "Gets up"], ans: "Getting up", hint: "動名詞當主詞。" },
                 { q: "______ hard brings success.", options: ["Working", "Work", "Works"], ans: "Working", hint: "動名詞當主詞。" },
-                { q: "To help others ______ good.", options: ["feels", "feel", "feeling"], ans: "feels", hint: "動詞用單數 feels。" },
-                { q: "Jogging every day ______ me healthy.", options: ["keeps", "keep", "keeping"], ans: "keeps", hint: "動詞用單數 keeps。" },
-                { q: "Planting trees ______ good for the earth.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Planting。" },
+                { q: "Collecting stamps ______ his hobby.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Collecting (單數)。" },
+                { q: "______ trees is good for the Earth.", options: ["Planting", "Plant", "Plants"], ans: "Planting", hint: "動名詞當主詞。" },
+                { q: "Watching movies ______ my favorite hobby.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Watching。" },
+                { q: "To become a doctor ______ hard work.", options: ["takes", "take", "taking"], ans: "takes", hint: "主詞是 To become... (單數)，動詞用 takes。" },
+                { q: "Swimming in the river ______ dangerous.", options: ["is", "are", "am"], ans: "is", hint: "主詞是 Swimming。" },
+                { q: "Eating too much junk food ______ bad for you.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Eating。" },
+                { q: "Taking pictures ______ interesting.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Taking。" },
+                { q: "Making friends ______ easy for him.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Making。" },
+                { q: "______ the Internet is convenient.", options: ["Using", "Use", "Uses"], ans: "Using", hint: "動名詞當主詞。" },
+                { q: "To learn a new language ______ time.", options: ["needs", "need", "needing"], ans: "needs", hint: "主詞是 To learn...，動詞用 needs。" },
+                { q: "Keeping a diary ______ a good habit.", options: ["is", "are", "be"], ans: "is", hint: "主詞是 Keeping。" },
+                { q: "______ by bus is cheaper.", options: ["Traveling", "Travel", "Travels"], ans: "Traveling", hint: "動名詞當主詞。" },
 
-                // --- 祈使句 (Imperative Sentences) ---
-                // 肯定祈使句 (Positive)
-                { q: "______ me some hints.", options: ["Give", "Giving", "To give"], ans: "Give", hint: "祈使句用原形動詞開頭。" },
+                // --- Group 2: 祈使句 (肯定: 原形動詞開頭) ---
+                { q: "______ me some hints.", options: ["Give", "Giving", "To give"], ans: "Give", hint: "祈使句省略主詞 You，以原形動詞開頭。" },
                 { q: "______ the garbage out, please.", options: ["Take", "Taking", "Takes"], ans: "Take", hint: "祈使句用原形動詞。" },
                 { q: "Please ______ on time for the meeting.", options: ["be", "is", "are"], ans: "be", hint: "祈使句用原形動詞 be。" },
-                { q: "______ quiet, please.", options: ["Be", "To be", "Being"], ans: "Be", hint: "祈使句用原形動詞 Be。" },
+                { q: "______ quiet, please.", options: ["Be", "To be", "Being"], ans: "Be", hint: "祈使句用原形 Be + 形容詞。" },
+                { q: "______ your homework now.", options: ["Do", "Doing", "Does"], ans: "Do", hint: "原形動詞開頭。" },
                 { q: "______ careful!", options: ["Be", "Is", "Are"], ans: "Be", hint: "Be + 形容詞。" },
                 { q: "Please ______ down.", options: ["sit", "sitting", "sits"], ans: "sit", hint: "Please + 原形動詞。" },
-                { q: "______ your homework now.", options: ["Do", "Doing", "Does"], ans: "Do", hint: "原形動詞開頭。" },
-                { q: "______ a good boy.", options: ["Be", "Is", "To be"], ans: "Be", hint: "Be + 名詞。" },
+                { q: "______ a good boy.", options: ["Be", "Is", "To be"], ans: "Be", hint: "Be + 名詞/形容詞。" },
                 { q: "______ the door, please.", options: ["Open", "Opening", "Opens"], ans: "Open", hint: "原形動詞開頭。" },
                 { q: "Please ______ to the teacher.", options: ["listen", "listening", "listens"], ans: "listen", hint: "Please + 原形動詞。" },
-                
-                // 否定祈使句 (Negative: Don't / Never)
-                { q: "______ say never.", options: ["Never", "Not", "No"], ans: "Never", hint: "Never + 原形動詞。" },
-                { q: "______ run a red light.", options: ["Never", "No", "Not"], ans: "Never", hint: "絕對不要... (Never)。" },
-                { q: "______ draw on the desk.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + 原形動詞。" },
+                { q: "______ your room clean.", options: ["Keep", "Keeping", "Keeps"], ans: "Keep", hint: "原形動詞開頭。" },
+                { q: "______ nice to your sister.", options: ["Be", "Is", "Are"], ans: "Be", hint: "Be + 形容詞。" },
+                { q: "______ follow the rules.", options: ["Always", "Be", "Do"], ans: "Always", hint: "Always + 原形動詞 (強調語氣)。" },
+                { q: "Please ______ your shoes.", options: ["take off", "taking off", "takes off"], ans: "take off", hint: "Please + 原形動詞。" },
+
+                // --- Group 3: 祈使句 (否定: Don't / Never) ---
+                { q: "______ say never.", options: ["Never", "Not", "No"], ans: "Never", hint: "否定祈使句可用 Never + 原形動詞。" },
+                { q: "______ run a red light.", options: ["Never", "No", "Not"], ans: "Never", hint: "表示「絕對不要」用 Never。" },
+                { q: "______ draw on the desk.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "否定祈使句用 Don't + 原形動詞。" },
                 { q: "______ be late again.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + be..." },
-                { q: "______ give up!", options: ["Never", "No", "Not"], ans: "Never", hint: "永不放棄。" },
-                { q: "______ talk in the library.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + 原形動詞。" },
-                { q: "______ forget to call me.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + 原形動詞。" },
-                { q: "Please ______ smoke here.", options: ["don't", "no", "not"], ans: "don't", hint: "Please don't..." },
+                { q: "Please ______ smoke here.", options: ["don't", "no", "not"], ans: "don't", hint: "Please don't... (請不要...)" },
                 { q: "______ touch the art.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + 原形動詞。" },
+                { q: "______ forget to call me.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + 原形動詞。" },
+                { q: "______ give up!", options: ["Never", "No", "Not"], ans: "Never", hint: "Never + 原形動詞。" },
+                { q: "______ talk in the library.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + 原形動詞。" },
                 { q: "______ worry about it.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "Don't + 原形動詞。" },
 
-                // Let's 句型
+                // --- Group 4: Let's 句型 ---
                 { q: "Let's ______ lunch together.", options: ["have", "has", "having"], ans: "have", hint: "Let's + 原形動詞。" },
                 { q: "Let's ______ a break.", options: ["take", "taking", "takes"], ans: "take", hint: "Let's + 原形動詞。" },
                 { q: "Let's ______ go out tonight.", options: ["not", "no", "don't"], ans: "not", hint: "Let's not + 原形動詞 (我們不要...吧)。" },
                 { q: "Let's ______ basketball.", options: ["play", "playing", "plays"], ans: "play", hint: "Let's + 原形動詞。" },
-                { q: "Let's ______ quiet.", options: ["be", "is", "are"], ans: "be", hint: "Let's + be + Adj。" },
-                
-                // 混淆/進階辨析
-                { q: "Give me some hints. 這是一句______。", options: ["祈使句", "疑問句", "倒裝句"], ans: "祈使句", hint: "以原形動詞開頭，省略主詞 You。" },
-                { q: "______ is fun.", options: ["Surfing", "Surf", "Surfs"], ans: "Surfing", hint: "動名詞當主詞。" },
-                { q: "______ your room clean.", options: ["Keep", "Keeping", "Keeps"], ans: "Keep", hint: "祈使句 (保持...)。" },
-                { q: "Keeping your room clean ______ important.", options: ["is", "are", "be"], ans: "is", hint: "動名詞當主詞，動詞用 is。" },
-                { q: "Please ______ nice to your sister.", options: ["be", "is", "are"], ans: "be", hint: "祈使句用原形 be。" }
+                { q: "Let's ______ quiet.", options: ["be", "is", "are"], ans: "be", hint: "Let's + be + Adj。" }
             ];
             return shuffleArray(pool);
         };
 
-        // --- Unit 6 文法重組生成器 (不定詞/動名詞主詞 & 祈使句) ---
+        // --- Unit 6 文法重組句子 (嚴格符合文法規則) ---
         const generateUnit6GrammarScramble = () => {
             const sentences = [
+                // Gerunds/Infinitives as Subject
                 { s: "To share my music with people is a wonderful thing.", ch: "與人們分享我的音樂是一件美好的事。" },
                 { s: "Being famous is tiring.", ch: "成名是很累人的。" },
                 { s: "Talking to my fans makes me happy.", ch: "跟我的粉絲說話讓我很快樂。" },
                 { s: "Listening to music helps me relax.", ch: "聽音樂幫助我放鬆。" },
                 { s: "To train a service dog is not easy.", ch: "訓練一隻服務犬是不容易的。" },
+                { s: "Reading comic books is fun.", ch: "看漫畫是有趣的。(Reading當主詞)" },
+                { s: "Jogging every day keeps me healthy.", ch: "每天慢跑讓我保持健康。" },
+                { s: "Playing video games is exciting.", ch: "玩電動遊戲是刺激的。" },
+                { s: "Getting up early is a good habit.", ch: "早起是個好習慣。" },
+                { s: "Making friends is easy for him.", ch: "交朋友對他來說很容易。" },
+                { s: "Collecting stamps is his hobby.", ch: "集郵是他的興趣。" },
+
+                // Imperatives (Affirmative/Negative/Let's)
                 { s: "Give me some hints.", ch: "給我一些提示。" },
                 { s: "Never say never.", ch: "永不說不。" },
                 { s: "Please take the garbage out.", ch: "請把垃圾拿出去。" },
                 { s: "Please be on time for the meeting.", ch: "開會請準時。" },
                 { s: "Never run a red light.", ch: "絕對不要闖紅燈。" },
                 { s: "Don't draw on the desk.", ch: "不要在桌上畫畫。" },
-                { s: "Let's have lunch together.", ch: "我們一起吃午餐吧。" }
+                { s: "Let's have lunch together.", ch: "我們一起吃午餐吧。" },
+                { s: "Let's not go out tonight.", ch: "我們今晚不要出門吧。" },
+                { s: "Don't worry about it.", ch: "別擔心這件事。" },
+                { s: "Please listen to the teacher.", ch: "請聽老師說話。" },
+                { s: "Keep your room clean.", ch: "保持你的房間整潔。" },
+                { s: "Be nice to your sister.", ch: "對你的妹妹好一點。" }
             ];
             return sentences.map((item, index) => ({
                 id: `u6-grammar-sc-${index}`,
@@ -339,7 +367,7 @@
             }));
         };
 
-        // --- Unit 5 單字資料 (更新) ---
+        // --- Unit 5 單字資料 (Vocab Data) ---
         const unit5VocabData = [
             { id: "u5-1", word: "human", part: "n.", chinese: "人類", sentence: "There are no humans but only animals on that island.", sentence_ch: "那個島上沒有人類，只有動物。" },
             { id: "u5-2", word: "relationship", part: "n.", chinese: "關係", sentence: "They have a very close relationship.", sentence_ch: "他們的關係非常親密。" },
@@ -362,7 +390,7 @@
             { id: "u5-19", word: "look for", part: "phr.", chinese: "尋找", sentence: "Jane is looking for her eraser on the ground.", sentence_ch: "Jane 正在地上找她的橡皮擦。" }
         ];
 
-        // --- Unit 6 單字資料 (更新) ---
+        // --- Unit 6 單字資料 (Vocab Data) ---
         const unit6VocabData = [
             { id: "u6-1", word: "artist", part: "n.", chinese: "藝術家", sentence: "That artist is drawing a picture of the tourist.", sentence_ch: "那位藝術家正在畫那名遊客。" },
             { id: "u6-2", word: "achieve", part: "vt.", chinese: "獲得，達到", sentence: "Tim finally achieved his dream of becoming a dentist.", sentence_ch: "Tim 終於實現了他成為牙醫的夢想。" },
@@ -417,7 +445,7 @@
                                 "The window is not only clean but also bright. (形容詞)",
                                 "The kid can not only draw but also write. (動詞)",
                                 "Not only the moon but also the lights are bright. (動詞 are 配合 B: the lights)",
-                                "Not only Sam but also Cali works at a FamilyMart store. (動詞 works 配合 B: Cali)"
+                                "Not only Sam but also Cali works at the store. (動詞 works 配合 B: Cali)"
                             ] 
                         }
                     ],
@@ -910,6 +938,312 @@
             );
         };
 
+        // --- 元件 2: 測驗模式 (整合 & 選擇題大亂鬥 & 拼字分類) ---
+        const QuizMode = ({ data, grammarData }) => {
+            const [quizType, setQuizType] = useState('choice'); 
+            const [status, setStatus] = useState('menu'); 
+            const [currentQIndex, setCurrentQIndex] = useState(0);
+            const [score, setScore] = useState(0);
+            const [quizData, setQuizData] = useState([]);
+            const [selectedOption, setSelectedOption] = useState(null);
+            const [spellingData, setSpellingData] = useState([]); // 新增：用於儲存過濾後的拼字資料
+            const [timeLeft, setTimeLeft] = useState(7); // 新增：倒數時間狀態
+            const [history, setHistory] = useState([]); // 新增：答題歷史紀錄
+
+            const startChoiceQuiz = () => {
+                if (!data || data.length === 0) return;
+                // 修改：增加題數至 50 題 (使用雙向出題增加題庫量)
+                const allVocabQuestions = [];
+                data.forEach(target => {
+                    // Q1: 英 -> 中
+                    const distractors1 = shuffleArray(data.filter(w => w.id !== target.id)).slice(0, 3);
+                    allVocabQuestions.push({
+                        questionText: target.word,
+                        correctId: target.id,
+                        correctAnswer: target.chinese, // 紀錄正確答案文字
+                        options: shuffleArray([target, ...distractors1]).map(o => ({
+                            id: o.id,
+                            text: o.chinese,
+                            isCorrect: o.id === target.id
+                        })),
+                        hint: "請選出中文意思",
+                        audio: target.word
+                    });
+                    
+                    // Q2: 中 -> 英
+                    const distractors2 = shuffleArray(data.filter(w => w.id !== target.id)).slice(0, 3);
+                    allVocabQuestions.push({
+                        questionText: target.chinese,
+                        correctId: target.id,
+                        correctAnswer: target.word, // 紀錄正確答案文字
+                        options: shuffleArray([target, ...distractors2]).map(o => ({
+                            id: o.id,
+                            text: o.word,
+                            isCorrect: o.id === target.id
+                        })),
+                        hint: "請選出英文單字",
+                        audio: null
+                    });
+                });
+
+                // 隨機選取 10 題
+                const selectedQuestions = shuffleArray(allVocabQuestions).slice(0, 10);
+                
+                setQuizData(selectedQuestions);
+                setCurrentQIndex(0);
+                setScore(0);
+                setHistory([]);
+                setSelectedOption(null);
+                setQuizType('choice');
+                setStatus('playing');
+                setTimeLeft(7); // 重置時間
+            };
+
+            const startSpellingQuiz = (type) => {
+                let filteredData = [];
+                if (!data) return;
+                if (type === 'words') {
+                    // 過濾掉片語 (part !== 'phr.')
+                    filteredData = data.filter(item => item.part !== 'phr.');
+                } else if (type === 'phrases') {
+                    // 只留片語 (part === 'phr.')
+                    filteredData = data.filter(item => item.part === 'phr.');
+                }
+
+                if (filteredData.length === 0) {
+                    alert("這個單元沒有這類型的題目喔！");
+                    return;
+                }
+
+                setSpellingData(filteredData);
+                setQuizType('spelling');
+                setStatus('playing');
+            };
+
+            const handleOptionClick = (option) => {
+                if (selectedOption) return; 
+                
+                // 計算分數 (剩餘時間比例 * 100，無條件進位)
+                let points = 0;
+                if (option.isCorrect) {
+                    points = Math.ceil((timeLeft / 7.0) * 100);
+                    // 確保至少有一點分數 (如果正確且時間未到)
+                    if (points <= 0 && timeLeft > 0) points = 10; 
+                }
+
+                const currentQ = quizData[currentQIndex];
+                
+                // 記錄歷史
+                setHistory(prev => [...prev, {
+                    q: currentQ.questionText,
+                    correct: currentQ.correctAnswer,
+                    user: option.text,
+                    isCorrect: option.isCorrect,
+                    points: points
+                }]);
+
+                setSelectedOption(option);
+                if (currentQ.audio) speakText(currentQ.audio);
+                
+                if (option.isCorrect) {
+                    setScore(prev => prev + points);
+                }
+            };
+
+            const nextQuestion = () => {
+                if (currentQIndex < quizData.length - 1) {
+                    setCurrentQIndex(prev => prev + 1);
+                    setSelectedOption(null);
+                    setTimeLeft(7); // 重置時間
+                } else {
+                    setStatus('result');
+                }
+            };
+
+            // 倒數計時器 Effect
+            useEffect(() => {
+                if (status !== 'playing' || quizType !== 'choice' || selectedOption) return;
+
+                if (timeLeft <= 0) {
+                    // 時間到處理邏輯
+                    const currentQ = quizData[currentQIndex];
+                    setHistory(prev => [...prev, {
+                        q: currentQ.questionText,
+                        correct: currentQ.correctAnswer,
+                        user: "(逾時)",
+                        isCorrect: false,
+                        points: 0
+                    }]);
+
+                    setSelectedOption({ id: 'timeout' }); // 標記為超時
+                    speakText("Time's up");
+                    return;
+                }
+
+                const timer = setInterval(() => {
+                    setTimeLeft(prev => prev - 1);
+                }, 1000);
+
+                return () => clearInterval(timer);
+            }, [timeLeft, status, quizType, selectedOption]);
+
+            // 計算是否有片語，決定是否顯示「片語篇」按鈕
+            const hasPhrases = data ? data.some(item => item.part === 'phr.') : false;
+            const hasWords = data ? data.some(item => item.part !== 'phr.') : false;
+
+            if (status === 'menu') {
+                return (
+                    <div className="flex flex-col items-center justify-center h-full animate-in fade-in space-y-4 pt-4 overflow-y-auto">
+                        <div className="text-center mb-2"><Gamepad2 className="w-16 h-16 mx-auto text-sky-400 mb-2" /><h2 className="text-2xl font-black text-slate-700">選擇測驗模式</h2></div>
+                        
+                        {/* 選擇題 (大亂鬥) */}
+                        <button onClick={startChoiceQuiz} className="w-full max-w-xs bg-white border-4 border-slate-200 p-5 rounded-3xl hover:border-sky-400 group transition-all shadow-sm hover:shadow-md text-left relative overflow-hidden">
+                            <div className="absolute right-[-20px] top-[-20px] bg-sky-100 w-24 h-24 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                            <div className="relative z-10 flex items-center gap-4"><div className="bg-sky-500 text-white p-3 rounded-2xl"><MousePointerClick className="w-6 h-6" /></div><div><h3 className="text-lg font-black text-slate-800">選擇題大挑戰</h3><p className="text-xs text-slate-500 font-bold">10題 限時搶答 (每題7秒)</p></div></div>
+                        </button>
+
+                        <div className="w-full max-w-xs space-y-3">
+                            <div className="text-slate-400 text-xs font-black uppercase tracking-wider pl-2">Spelling Mode</div>
+                            
+                            {/* 拼字：單字篇 */}
+                            {hasWords && (
+                                <button onClick={() => startSpellingQuiz('words')} className="w-full bg-white border-4 border-slate-200 p-4 rounded-3xl hover:border-violet-400 group transition-all shadow-sm hover:shadow-md text-left relative overflow-hidden">
+                                    <div className="absolute right-[-20px] top-[-20px] bg-violet-100 w-20 h-20 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                                    <div className="relative z-10 flex items-center gap-3"><div className="bg-violet-500 text-white p-2.5 rounded-2xl"><Keyboard className="w-5 h-5" /></div><div><h3 className="text-lg font-black text-slate-800">拼字：單字篇</h3><p className="text-xs text-slate-500 font-bold">Vocabulary Only</p></div></div>
+                                </button>
+                            )}
+
+                            {/* 拼字：片語篇 */}
+                            {hasPhrases && (
+                                <button onClick={() => startSpellingQuiz('phrases')} className="w-full bg-white border-4 border-slate-200 p-4 rounded-3xl hover:border-pink-400 group transition-all shadow-sm hover:shadow-md text-left relative overflow-hidden">
+                                    <div className="absolute right-[-20px] top-[-20px] bg-pink-100 w-20 h-20 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                                    <div className="relative z-10 flex items-center gap-3"><div className="bg-pink-500 text-white p-2.5 rounded-2xl"><Filter className="w-5 h-5" /></div><div><h3 className="text-lg font-black text-slate-800">拼字：片語篇</h3><p className="text-xs text-slate-500 font-bold">Phrases & Idioms</p></div></div>
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                );
+            }
+
+            if (status === 'result') {
+                // 評語邏輯
+                let feedbackTitle = "";
+                let feedbackColor = "";
+                if (score >= 900) {
+                    feedbackTitle = "厲害！";
+                    feedbackColor = "text-yellow-500";
+                } else if (score >= 800) {
+                    feedbackTitle = "不錯！";
+                    feedbackColor = "text-emerald-500";
+                } else if (score >= 700) {
+                    feedbackTitle = "還可以";
+                    feedbackColor = "text-sky-500";
+                } else {
+                    feedbackTitle = "加油加油再測一次";
+                    feedbackColor = "text-slate-500";
+                }
+
+                return (
+                    <div className="flex flex-col h-full animate-in zoom-in pt-4 pb-20 overflow-y-auto">
+                        <div className="flex flex-col items-center justify-center mb-6">
+                            <Trophy className={`w-24 h-24 drop-shadow-xl animate-bounce mb-2 ${score >= 800 ? 'text-yellow-400' : 'text-slate-300'}`} />
+                            <h2 className={`text-3xl font-black mb-1 ${feedbackColor}`}>{feedbackTitle}</h2>
+                            <div className="text-6xl font-black text-slate-800 mb-2">{score} <span className="text-xl text-slate-400">分</span></div>
+                        </div>
+
+                        {/* 成績總表 */}
+                        <div className="bg-white rounded-2xl shadow-sm border-2 border-slate-200 overflow-hidden mx-1 mb-6">
+                            <table className="w-full text-sm text-left">
+                                <thead className="text-xs text-slate-500 uppercase bg-slate-100 border-b border-slate-200">
+                                    <tr>
+                                        <th className="px-3 py-3 w-10">#</th>
+                                        <th className="px-3 py-3">題目</th>
+                                        <th className="px-3 py-3 text-center">得分</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {history.map((record, idx) => (
+                                        <tr key={idx} className="border-b border-slate-100 last:border-0 hover:bg-slate-50">
+                                            <td className="px-3 py-3 font-bold text-slate-400">{idx + 1}</td>
+                                            <td className="px-3 py-3">
+                                                <div className="font-bold text-slate-700">{record.q}</div>
+                                                <div className="flex flex-col text-xs mt-1 gap-0.5">
+                                                    <div className={record.isCorrect ? "text-emerald-600" : "text-rose-500 font-bold"}>
+                                                        {record.isCorrect ? "●" : "✕"} 您選: {record.user}
+                                                    </div>
+                                                    {!record.isCorrect && (
+                                                        <div className="text-emerald-600 font-bold">
+                                                            ✓ 正解: {record.correct}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </td>
+                                            <td className="px-3 py-3 text-center font-black text-slate-700">
+                                                {record.points > 0 ? <span className="text-emerald-500">+{record.points}</span> : <span className="text-slate-300">0</span>}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="flex justify-center pb-8">
+                            <GameButton onClick={() => setStatus('menu')} color="green" className="w-64 text-xl py-4">回到選單</GameButton>
+                        </div>
+                    </div>
+                );
+            }
+
+            // 拼字模式使用過濾後的資料
+            if (quizType === 'spelling') return <SpellingQuiz data={spellingData} onFinish={(s) => { setScore(s); setStatus('result'); }} />;
+
+            // 選擇題模式 (新版通用渲染器)
+            const currentQ = quizData[currentQIndex];
+
+            return (
+                <div className="flex flex-col h-full max-w-md mx-auto">
+                    <div className="mb-4 px-1 flex items-center justify-between"><div className="bg-white border-2 border-slate-200 px-3 py-1 rounded-full font-black text-slate-400 text-xs shadow-sm">STAGE {currentQIndex + 1} / {quizData.length}</div><div className="bg-yellow-100 border-2 border-yellow-300 px-3 py-1 rounded-full font-black text-yellow-700 text-xs shadow-sm">SCORE: {score}</div></div>
+                    
+                    {/* 時間倒數條 */}
+                    <div className="relative h-6 bg-slate-100 rounded-full overflow-hidden border-2 border-slate-300 mb-4 mx-1">
+                        <div 
+                            className={`h-full transition-all duration-1000 ease-linear ${timeLeft <= 3 ? 'bg-rose-500' : 'bg-sky-400'}`} 
+                            style={{ width: `${(timeLeft / 7) * 100}%` }}
+                        ></div>
+                        <div className="absolute inset-0 flex items-center justify-center text-xs font-black text-slate-600 drop-shadow-sm">
+                            <Timer className="w-3 h-3 mr-1" /> {timeLeft}s (滿分遞減)
+                        </div>
+                    </div>
+
+                    <div className="bg-white border-4 border-b-8 border-violet-200 rounded-3xl p-8 mb-6 text-center relative overflow-hidden shadow-sm group">
+                        <div className="absolute top-3 left-1/2 -translate-x-1/2 bg-violet-100 text-violet-600 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">Question</div>
+                        <h2 className="font-black text-3xl text-slate-800 mt-6 leading-relaxed">{currentQ.questionText}</h2>
+                        {currentQ.audio && <button onClick={() => speakText(currentQ.audio)} className="mt-4 p-2 bg-slate-100 rounded-full text-slate-400 hover:text-violet-500 hover:bg-violet-50 border-2 border-slate-200 hover:border-violet-200 transition-colors"><Volume2 className="w-6 h-6 mx-auto" /></button>}
+                    </div>
+                    <div className="grid grid-cols-1 gap-3 pb-8">
+                        {currentQ.options.map((option, idx) => {
+                            let color = "white";
+                            // 如果已選擇(包括時間到)
+                            if (selectedOption) {
+                                if (option.isCorrect) color = "green"; // 正確答案總是顯示綠色
+                                else if (selectedOption.id === option.id && !option.isCorrect) color = "red"; // 如果選錯了顯示紅色
+                                else if (selectedOption.id === 'timeout' && !option.isCorrect) color = "white"; // 時間到沒選的顯示白色
+                            }
+                            
+                            return (
+                                <GameButton key={idx} disabled={!!selectedOption} onClick={() => handleOptionClick(option)} color={color} className={`justify-between py-4 text-left ${!selectedOption && "hover:bg-slate-50"}`}>
+                                    <span className="text-lg">{option.text}</span>
+                                    {selectedOption && option.isCorrect && <CheckCircle className="w-6 h-6 animate-bounce" />}
+                                    {selectedOption && selectedOption.id === option.id && !option.isCorrect && <XCircle className="w-6 h-6 animate-pulse" />}
+                                </GameButton>
+                            );
+                        })}
+                    </div>
+                    {selectedOption && <div className="fixed bottom-6 left-0 right-0 p-4 bg-transparent pointer-events-none flex justify-center z-20"><button onClick={nextQuestion} className="pointer-events-auto bg-slate-800 text-white px-8 py-4 rounded-2xl font-black text-xl shadow-2xl hover:bg-slate-900 hover:scale-105 transition-all flex items-center gap-2 animate-in slide-in-from-bottom-4 border-b-8 border-black">{currentQIndex < quizData.length - 1 ? "NEXT STAGE" : "FINISH"} <ChevronRight className="w-6 h-6" /></button></div>}
+                </div>
+            );
+        };
+
         // --- 元件 4: 文法模式 (修正：10題隨機，音效，結算頁面，即時完整解釋，題目顏色反饋) ---
         const GrammarMode = ({ grammarData }) => {
             const [mode, setMode] = useState('notes'); // 'notes', 'quiz', 'scramble'
@@ -920,12 +1254,8 @@
             const [quizList, setQuizList] = useState([]);
             const [history, setHistory] = useState([]); // 紀錄答題歷史
             
-            // 新功能：題庫總表視窗狀態 (含密碼鎖)
+            // 新功能：題庫總表視窗狀態
             const [showAllQuestions, setShowAllQuestions] = useState(false);
-            const [showBankLogin, setShowBankLogin] = useState(false); // 控制密碼輸入框顯示
-            const [isBankUnlocked, setIsBankUnlocked] = useState(false); // 控制是否解鎖
-            const [bankPassword, setBankPassword] = useState("");
-            const [bankLoginError, setBankLoginError] = useState(false);
             const [previewTab, setPreviewTab] = useState('quiz'); // 'quiz', 'scramble'
 
             // 輔助函式：處理題庫資料，確保選項被打亂
@@ -939,34 +1269,20 @@
                 }));
             };
 
+            const handleShowMasterList = () => {
+                const pwd = prompt("請輸入管理員密碼：");
+                if (pwd === "1999") {
+                    setShowAllQuestions(true);
+                } else if (pwd !== null) {
+                    alert("密碼錯誤！");
+                }
+            };
+
             useEffect(() => {
                 // 初始化
                 setMode('notes');
                 setStatus('menu');
             }, [grammarData]);
-
-            // 處理題庫總表按鈕點擊
-            const handleBankIconClick = () => {
-                if (isBankUnlocked) {
-                    setShowAllQuestions(true);
-                } else {
-                    setShowBankLogin(true);
-                    setBankPassword("");
-                    setBankLoginError(false);
-                }
-            };
-
-            // 處理題庫密碼驗證
-            const handleBankLogin = () => {
-                if (bankPassword === "1999") {
-                    setIsBankUnlocked(true);
-                    setShowBankLogin(false);
-                    setShowAllQuestions(true);
-                } else {
-                    setBankLoginError(true);
-                    playSound('wrong');
-                }
-            };
 
             const startQuiz = () => {
                 if (grammarData?.quiz) { 
@@ -1020,9 +1336,9 @@
                 <div className="flex flex-col h-full animate-in fade-in relative">
                     {/* 不起眼的角落按鈕：題庫總表 */}
                     <button 
-                        onClick={handleBankIconClick}
+                        onClick={handleShowMasterList}
                         className="absolute -top-1 right-0 p-2 text-slate-300 hover:text-indigo-500 transition-colors z-10"
-                        title="查看所有題庫"
+                        title="查看所有題庫 (需密碼)"
                     >
                         <FileText className="w-5 h-5" />
                     </button>
@@ -1203,36 +1519,6 @@
                         )
                     )}
 
-                    {/* 題庫登入 Modal */}
-                    {showBankLogin && (
-                        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in">
-                            <div className="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl animate-in zoom-in border-4 border-slate-200 text-center relative">
-                                <button onClick={() => setShowBankLogin(false)} className="absolute top-2 right-2 p-2 hover:bg-slate-100 rounded-full text-slate-400"><X className="w-5 h-5" /></button>
-                                <div className="mb-4 bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto text-indigo-500">
-                                    <Lock className="w-8 h-8" />
-                                </div>
-                                <h3 className="text-xl font-black text-slate-700 mb-1">管理者專用</h3>
-                                <p className="text-sm text-slate-400 font-bold mb-4">請輸入密碼以查看完整題庫</p>
-                                <input 
-                                    type="password" 
-                                    value={bankPassword}
-                                    onChange={(e) => setBankPassword(e.target.value)}
-                                    className="w-full bg-slate-100 border-2 border-slate-300 rounded-xl px-4 py-2 text-center text-lg font-bold text-slate-700 mb-3 focus:outline-none focus:border-indigo-400 transition-colors"
-                                    placeholder="****"
-                                    onKeyDown={(e) => e.key === 'Enter' && handleBankLogin()}
-                                    autoFocus
-                                />
-                                {bankLoginError && <div className="text-rose-500 font-bold text-xs mb-3 animate-bounce">密碼錯誤</div>}
-                                <button 
-                                    onClick={handleBankLogin}
-                                    className="w-full bg-indigo-500 text-white font-black py-3 rounded-xl shadow-md border-b-4 border-indigo-700 active:border-b-0 active:translate-y-1 transition-all"
-                                >
-                                    解鎖題庫
-                                </button>
-                            </div>
-                        </div>
-                    )}
-
                     {/* 題庫總表 Modal */}
                     {showAllQuestions && (
                         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 animate-in fade-in">
@@ -1258,19 +1544,17 @@
                                                             <div className="font-bold text-slate-700 text-base mb-2">
                                                                 {item.q.replace('______', `(${item.ans})`)}
                                                             </div>
-                                                            
-                                                            {/* 新增選項顯示區域 */}
-                                                            <div className="flex flex-wrap gap-2 mb-3">
+                                                            {/* 新增：顯示所有選項 */}
+                                                            <div className="flex flex-wrap gap-2 mb-2">
                                                                 {item.options.map((opt, optIdx) => (
                                                                     <span 
                                                                         key={optIdx} 
-                                                                        className={`text-xs px-2 py-1 rounded border font-bold ${opt === item.ans ? 'bg-emerald-100 border-emerald-300 text-emerald-700' : 'bg-slate-50 border-slate-200 text-slate-400'}`}
+                                                                        className={`text-xs px-2 py-1 rounded border-2 ${opt === item.ans ? 'bg-emerald-100 border-emerald-200 text-emerald-700 font-bold' : 'bg-white border-slate-200 text-slate-500'}`}
                                                                     >
-                                                                        {String.fromCharCode(65 + optIdx)}. {opt}
+                                                                        {opt}
                                                                     </span>
                                                                 ))}
                                                             </div>
-
                                                             <div className="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-1 rounded inline-block">
                                                                 💡 {item.hint}
                                                             </div>
@@ -1303,7 +1587,7 @@
         };
 
         // --- Main App Container ---
-        function Unit34App() {
+        function Unit56App() {
             const [activeTab, setActiveTab] = useState('study');
             const [currentUnit, setCurrentUnit] = useState('unit5'); 
 
@@ -1345,7 +1629,7 @@
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<Unit34App />);
+        root.render(<Unit56App />);
     </script>
 </body>
 </html>
