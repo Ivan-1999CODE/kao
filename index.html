@@ -798,29 +798,46 @@
             const handleWordClick = (wordObj) => { if (feedback === 'correct') return; if (feedback === 'wrong') setFeedback(null); setAvailableWords(prev => prev.filter(w => w.id !== wordObj.id)); setUserSentence(prev => [...prev, wordObj]); };
             const handleAnswerClick = (wordObj) => { if (feedback === 'correct') return; if (feedback === 'wrong') setFeedback(null); setUserSentence(prev => prev.filter(w => w.id !== wordObj.id)); setAvailableWords(prev => [...prev, wordObj]); };
             const handleTryAgain = () => { setFeedback(null); setShowHelperHint(true); setTimeout(() => setShowHelperHint(false), 5000); };
-            const handleMagicHint = () => {
+          const handleMagicHint = () => {
                 if (feedback === 'correct') return;
                 setFeedback(null); 
+                
+                // 找出第一個錯誤的位置
                 let firstWrongIndex = -1;
-                for (let i = 0; i < userSentence.length; i++) { if (!userSentence[i].id.startsWith(`${i}-`)) { firstWrongIndex = i; break; } }
+                for (let i = 0; i < userSentence.length; i++) { 
+                    if (!userSentence[i].id.startsWith(`${i}-`)) { 
+                        firstWrongIndex = i; 
+                        break; 
+                    } 
+                }
                 if (firstWrongIndex === -1) firstWrongIndex = userSentence.length;
+                
+                // 計算總字數，避免溢位
                 const totalWords = userSentence.length + availableWords.length;
                 if (firstWrongIndex >= totalWords) return;
+
                 const correctPart = userSentence.slice(0, firstWrongIndex);
                 const wrongPart = userSentence.slice(firstWrongIndex);
                 const targetIdPrefix = `${firstWrongIndex}-`;
-                let nextWordObj = wrongPart.find(w => w.id.startsWith(targetIdPrefix));
-                let newAvailable = [...newAvailable, ...others];
+
+                // 尋找正確的那個字
+                let nextWordObj = availableWords.find(w => w.id.startsWith(targetIdPrefix));
+                let newAvailable = [...availableWords]; 
+
                 if (nextWordObj) {
-                    const others = wrongPart.filter(w => w.id !== nextWordObj.id);
-                    newAvailable = [...newAvailable, ...others];
+                    // 情況A: 字在備選區
+                    newAvailable = newAvailable.filter(w => w.id !== nextWordObj.id);
                 } else {
-                    nextWordObj = availableWords.find(w => w.id.startsWith(targetIdPrefix));
-                    if (nextWordObj) {
-                        newAvailable = newAvailable.filter(w => w.id !== nextWordObj.id);
-                        newAvailable = [...newAvailable, ...wrongPart];
-                    }
+                    // 情況B: 字在使用者錯誤區
+                    nextWordObj = wrongPart.find(w => w.id.startsWith(targetIdPrefix));
                 }
+
+                // 把剩下在錯誤區的字，全部丟回備選區
+                if (wrongPart.length > 0) {
+                     const others = wrongPart.filter(w => w && w.id !== (nextWordObj ? nextWordObj.id : ''));
+                     newAvailable = [...newAvailable, ...others];
+                }
+
                 if (nextWordObj) {
                     setUserSentence([...correctPart, nextWordObj]);
                     setAvailableWords(newAvailable);
