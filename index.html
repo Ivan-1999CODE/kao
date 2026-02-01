@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>英文單字冒險 (Unit 5 & 6) - 文法擴充版</title>
+    <title>英文單字冒險 (Unit 1 & 2) - 文法擴充版</title>
     
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 引入 Babel 用於解析 JSX -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 修正 Babel 設定：指定版本並在下方 script 標籤加入 presets -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.6/babel.min.js"></script>
 
     <!-- Import Map -->
     <script type="importmap">
@@ -59,7 +59,8 @@
     <div id="root"></div>
 
     <!-- 這裡開始是 React 程式碼 -->
-    <script type="text/babel" data-type="module">
+    <!-- 修正：加入 data-presets="react" 以避免 targets 設定錯誤 -->
+    <script type="text/babel" data-type="module" data-presets="react">
         import React, { useState, useEffect, useRef } from 'react';
         import ReactDOM from 'react-dom/client';
         import { 
@@ -153,327 +154,310 @@
             return newArray;
         };
 
-        // --- Unit 5 文法題庫生成 (50題: 授與動詞 & Not only but also) ---
-        const generateUnit5QuizPool = () => {
+        // --- Unit 1 文法題庫生成 (原 Unit 5: 授與動詞 & Not only but also) ---
+        const generateUnit1QuizPool = () => {
             const pool = [
-                // Part 1: Dative Verbs
-                { q: "I bought ______ a new bag.", options: ["my mom", "to my mom", "for my mom"], ans: "my mom", hint: "buy + 人 + 物 (不需介系詞)。 (I bought my mom a new bag.)" },
-                { q: "Please send the letter ______ me.", options: ["to", "for", "at"], ans: "to", hint: "send to (寄給...)" },
-                { q: "Can you get a ticket ______ me?", options: ["to", "for", "of"], ans: "for", hint: "get for (幫...取得)" },
-                { q: "He gave ______ a big surprise.", options: ["her", "to her", "for her"], ans: "her", hint: "give + 人 + 物 (give her a big surprise)" },
-                { q: "Show your homework ______ the teacher.", options: ["to", "for", "with"], ans: "to", hint: "show to (展示給...看)" },
-                { q: "My dad sold his old car ______ a friend.", options: ["to", "for", "at"], ans: "to", hint: "sell to (賣給...)" },
-                { q: "Don't lend money ______ him.", options: ["for", "to", "on"], ans: "to", hint: "lend to (借給...)" },
-                { q: "She brought some cookies ______ us.", options: ["to", "for", "with"], ans: "to", hint: "bring to (帶來給...)" },
-                { q: "I want to buy a gift ______ you.", options: ["to", "for", "of"], ans: "for", hint: "buy for (買給...)" },
-                { q: "Please give ______ back to me.", options: ["it", "to it", "for it"], ans: "it", hint: "Give it back... (受詞為代名詞放中間)" },
-                { q: "Did you show ______?", options: ["the photos me", "me the photos", "to me the photos"], ans: "me the photos", hint: "show + 人 + 物 (show me the photos)" },
-                { q: "Let's get a taxi ______ them.", options: ["to", "for", "at"], ans: "for", hint: "get for (幫...叫車)" },
-                { q: "I sent a package ______ my brother.", options: ["to", "for", "by"], ans: "to", hint: "send to (寄給...)" },
-                { q: "Please bring the menu ______ me.", options: ["to", "for", "at"], ans: "to", hint: "bring to (拿給...)" },
-                { q: "He sold ______ to a rich man.", options: ["the house", "the house for", "to the house"], ans: "the house", hint: "sell + 物 + to + 人" },
-                { q: "Can you lend a pen ______ me?", options: ["to", "for", "with"], ans: "to", hint: "lend to (借給...)" },
-                { q: "My mom bought ______ a computer.", options: ["me", "to me", "for me"], ans: "me", hint: "buy + 人 + 物 (bought me a computer)" },
-                { q: "My father got a new bike ______ my brother.", options: ["to", "for", "at"], ans: "for", hint: "get for (幫...買/取得)" },
-                { q: "Show ______ the answer, please.", options: ["I", "me", "to me"], ans: "me", hint: "Show me... (秀給我看)" },
-                { q: "They gave a present ______ the baby.", options: ["to", "for", "of"], ans: "to", hint: "give to (給...)" },
-                
-                // 選出正確句子
-                { q: "(選出正確句子)", options: ["I bought a watch to him.", "I bought him a watch.", "I bought for him a watch."], ans: "I bought him a watch.", hint: "buy + 人 + 物 (不加介系詞)" },
-                { q: "(選出正確句子)", options: ["Send it to me.", "Send me it.", "Send to me it."], ans: "Send it to me.", hint: "受詞為代名詞(it)時，必須用 Send it to me" },
-                { q: "(選出正確句子)", options: ["She showed to us her new bag.", "She showed us her new bag.", "She showed her new bag for us."], ans: "She showed us her new bag.", hint: "show + 人 + 物" },
-                { q: "(選出正確句子)", options: ["Please get some water for me.", "Please get some water to me.", "Please get me for some water."], ans: "Please get some water for me.", hint: "get + 物 + for + 人" },
+                // Part 1: 虛主詞 It 的用法 (25題)
+                { q: "______ is important to wash your hands before meals.", options: ["That", "This", "It"], ans: "It", hint: "虛主詞固定用 It" },
+                { q: "It is difficult ______ many new words in one day.", options: ["memorize", "to memorize", "memorizing"], ans: "to memorize", hint: "It is + adj + to V (不定詞當真主詞)" },
+                { q: "Is ______ necessary for us to bring an umbrella today?", options: ["it", "that", "there"], ans: "it", hint: "虛主詞句型疑問句 Is it...?" },
+                { q: "It ______ exciting to watch the baseball game last night.", options: ["is", "was", "are"], ans: "was", hint: "last night (昨晚) 用過去式 was" },
+                { q: "It's not easy ______ a foreign language well.", options: ["speak", "spoke", "to speak"], ans: "to speak", hint: "It is + adj + to V" },
+                { q: "It is fun ______ kites in the park on windy days.", options: ["to fly", "fly", "flies"], ans: "to fly", hint: "It is + adj + to V" },
+                { q: "______ is wrong to copy your classmate's homework.", options: ["This", "That", "It"], ans: "It", hint: "虛主詞固定用 It" },
+                { q: "It is dangerous for children ______ alone in the river.", options: ["swim", "to swim", "swimming"], ans: "to swim", hint: "It is + adj + (for 人) + to V" },
+                { q: "Was it hard ______ the math problem yesterday?", options: ["solve", "to solve", "solved"], ans: "to solve", hint: "不定詞 to V 當真主詞" },
+                { q: "It is polite ______ \"Thank you\" when people help you.", options: ["to say", "say", "saying"], ans: "to say", hint: "It is + adj + to V" },
+                { q: "It's great ______ a picnic with friends on weekends.", options: ["have", "to have", "had"], ans: "to have", hint: "It is + adj + to V" },
+                { q: "Is it possible ______ a train to Taipei in ten minutes?", options: ["catch", "to catch", "catching"], ans: "to catch", hint: "It is + adj + to V" },
+                { q: "It ______ lucky for her to find her lost wallet.", options: ["was", "be", "were"], ans: "was", hint: "事件已發生(找到皮夾)，用過去式" },
+                { q: "It is healthy ______ more vegetables and less junk food.", options: ["eat", "to eat", "ate"], ans: "to eat", hint: "It is + adj + to V" },
+                { q: "It is convenient ______ the bus to the night market.", options: ["take", "to take", "taking"], ans: "to take", hint: "It is + adj + to V" },
+                { q: "It is cool ______ a robot to help with housework.", options: ["to have", "has", "having"], ans: "to have", hint: "It is + adj + to V" },
+                { q: "______ is very kind of you to help the old lady.", options: ["This", "It", "That"], ans: "It", hint: "虛主詞固定用 It" },
+                { q: "It is important for us ______ our environment.", options: ["protect", "to protect", "protected"], ans: "to protect", hint: "It is + adj + for 人 + to V" },
+                { q: "Was ______ boring to wait for the bus for an hour?", options: ["it", "this", "that"], ans: "it", hint: "虛主詞固定用 It" },
+                { q: "It's not good ______ too many computer games.", options: ["play", "to play", "played"], ans: "to play", hint: "It is + adj + to V" },
+                { q: "It is expensive ______ a new smartphone these days.", options: ["to buy", "buy", "buying"], ans: "to buy", hint: "It is + adj + to V" },
+                { q: "It is useful ______ English when you travel abroad.", options: ["speak", "spoke", "to speak"], ans: "to speak", hint: "It is + adj + to V" },
+                { q: "It's necessary ______ medicine on time.", options: ["to take", "take", "taking"], ans: "to take", hint: "It is + adj + to V" },
+                { q: "It is interesting ______ about different cultures.", options: ["learn", "to learn", "learning"], ans: "to learn", hint: "It is + adj + to V" },
+                { q: "______ is a good experience to work as a volunteer.", options: ["It", "This", "That"], ans: "It", hint: "虛主詞固定用 It" },
 
-                { q: "I will lend my bike ______ you.", options: ["to", "for", "of"], ans: "to", hint: "lend to (借給...)" },
-                { q: "Did he sell the tickets ______ you?", options: ["to", "for", "at"], ans: "to", hint: "sell to (賣給...)" },
-                { q: "Who brought this cake ______ the party?", options: ["to", "for", "in"], ans: "to", hint: "bring to (帶到...)" },
-                { q: "Please give the phone ______ your father.", options: ["for", "to", "with"], ans: "to", hint: "give to (交給...)" },
-                { q: "My sister bought a dress ______ herself.", options: ["to", "for", "of"], ans: "for", hint: "buy for (買給...)" },
-                { q: "We sent some flowers ______ our teacher.", options: ["to", "for", "by"], ans: "to", hint: "send to (寄給...)" },
-
-                // Part 2: Not only... but also...
-                { q: "He is not only smart but also ______.", options: ["kind", "a kind", "kindly"], ans: "kind", hint: "smart (adj.) 對應 kind (adj.)" },
-                { q: "Not only you but also I ______ a student.", options: ["am", "are", "is"], ans: "am", hint: "配合最靠近的主詞 I -> am" },
-                { q: "Not only Mary but also her friends ______ happy.", options: ["is", "are", "am"], ans: "are", hint: "配合最靠近的主詞 friends -> are" },
-                { q: "She speaks not only English but also ______.", options: ["Japan", "Japanese", "in Japanese"], ans: "Japanese", hint: "English (語言名詞) 對應 Japanese (語言名詞)" },
-                { q: "Not only the teacher but also the students ______ going to the zoo.", options: ["is", "are", "am"], ans: "are", hint: "配合 students -> are" },
-                { q: "He not only ______ the piano but also plays the guitar.", options: ["play", "plays", "playing"], ans: "plays", hint: "配合 He (三單) -> plays" },
-                { q: "This car is not only cool but also ______.", options: ["fast", "speed", "fastly"], ans: "fast", hint: "cool (adj.) 對應 fast (adj.)" },
-                { q: "Not only Tom but also his brother ______ baseball.", options: ["like", "likes", "liking"], ans: "likes", hint: "配合 brother (三單) -> likes" },
-                { q: "I can ______ dance but also sing.", options: ["not", "not only", "only not"], ans: "not only", hint: "not only... but also..." },
-                { q: "Not only my parents but also my uncle ______ in Taipei.", options: ["live", "lives", "living"], ans: "lives", hint: "配合 uncle (三單) -> lives" },
-                { q: "The movie was not only boring ______ too long.", options: ["and also", "but also", "but so"], ans: "but also", hint: "not only... but also..." },
-                { q: "She is not only a singer ______ an actress.", options: ["but also", "and", "or"], ans: "but also", hint: "not only... but also..." },
-                { q: "Not only John but also I ______ tired.", options: ["is", "are", "am"], ans: "am", hint: "配合 I -> am" },
-                { q: "Not only you but also he ______ to go.", options: ["want", "wants", "wanting"], ans: "wants", hint: "配合 he -> wants" },
-                { q: "The weather is not only cold but also ______.", options: ["rain", "rainy", "rains"], ans: "rainy", hint: "cold (adj.) 對應 rainy (adj.)" },
-                { q: "We went to not only London but also ______.", options: ["Paris", "to Paris", "in Paris"], ans: "Paris", hint: "London (地名) 對應 Paris (地名)，to 已在前面" },
-                { q: "He ate not only the pizza but also ______.", options: ["the fries", "ate the fries", "eat the fries"], ans: "the fries", hint: "the pizza (名詞) 對應 the fries (名詞)" },
-                { q: "Not only the boys but also the girl ______ the answer.", options: ["know", "knows", "knowing"], ans: "knows", hint: "配合 girl (單數) -> knows" },
-                { q: "She was not only hungry but also ______.", options: ["thirst", "thirsty", "thirstily"], ans: "thirsty", hint: "hungry (adj.) 對應 thirsty (adj.)" },
-                { q: "Not only the players but also the coach ______ excited.", options: ["was", "were", "be"], ans: "was", hint: "配合 coach (單數) -> was" }
+                // Part 2: 形容詞與副詞的比較級 (25題)
+                { q: "My brother is ______ than I am.", options: ["tall", "taller", "more tall"], ans: "taller", hint: "單音節形容詞比較級加 er" },
+                { q: "This blue dress looks ______ than that red one.", options: ["prettier", "more pretty", "pretty"], ans: "prettier", hint: "字尾 y 去 y 改 ier" },
+                { q: "The weather today is even ______ than it was yesterday.", options: ["bad", "badder", "worse"], ans: "worse", hint: "bad 的比較級是不規則變化 worse" },
+                { q: "Learning English is ______ than I thought.", options: ["easier", "more easy", "easyer"], ans: "easier", hint: "easy -> easier" },
+                { q: "Sandy sings ______ than anyone else in her class.", options: ["beautiful", "more beautifully", "beautifully"], ans: "more beautifully", hint: "修飾動作 sings 用副詞，多音節加 more" },
+                { q: "A car is ______ than a bicycle.", options: ["expensive", "more expensive", "expensiver"], ans: "more expensive", hint: "多音節形容詞前加 more" },
+                { q: "My father drives ______ than my mother.", options: ["carefully", "more carefully", "more careful"], ans: "more carefully", hint: "修飾動作 drives 用副詞 carefully" },
+                { q: "The MRT is ______ than the bus in Taipei.", options: ["convenienter", "more convenient", "convenient"], ans: "more convenient", hint: "多音節形容詞前加 more" },
+                { q: "This box is ______ than that one. Can you help me?", options: ["heavyer", "heavier", "more heavy"], ans: "heavier", hint: "heavy -> heavier" },
+                { q: "The students are working ______ than before for the exam.", options: ["harder", "more hard", "more hardly"], ans: "harder", hint: "hard 的副詞還是 hard，比較級加 er" },
+                { q: "My grandmother walks ______ than I do.", options: ["slowly", "more slow", "more slowly"], ans: "more slowly", hint: "副詞 slowly 比較級用 more slowly" },
+                { q: "The elephant is ______ than the tiger.", options: ["big", "bigger", "more big"], ans: "bigger", hint: "短母音單字重複字尾加 er" },
+                { q: "Your cake tastes ______ than the one from the bakery.", options: ["good", "better", "well"], ans: "better", hint: "good 的比較級是不規則變化 better" },
+                { q: "It is ______ today than it was last week.", options: ["hotter", "hoter", "more hot"], ans: "hotter", hint: "hot 重複字尾 t 加 er" },
+                { q: "Watching movies is ______ than reading books to me.", options: ["interesting", "more interesting", "attractiver"], ans: "more interesting", hint: "多音節形容詞前加 more" },
+                { q: "Kevin speaks English ______ than his sister.", options: ["fluently", "more fluently", "more fluent"], ans: "more fluently", hint: "修飾 speaks 用副詞，比較級加 more" },
+                { q: "This smartphone is ______ than that old model.", options: ["more thin", "thinner", "thinier"], ans: "thinner", hint: "thin 重複字尾 n 加 er" },
+                { q: "The science test was ______ than the history test.", options: ["more difficult", "difficulter", "difficult"], ans: "more difficult", hint: "多音節形容詞前加 more" },
+                { q: "You should study ______ if you want to get good grades.", options: ["diligent", "more diligently", "more diligent"], ans: "more diligently", hint: "修飾 study 用副詞 diligently" },
+                { q: "The little boy cried ______ than his sister.", options: ["loudly", "louder", "more loud"], ans: "louder", hint: "loud/loudly 的比較級皆可用 louder" },
+                { q: "Apples are ______ than candy for your teeth.", options: ["healthyer", "more healthy", "healthier"], ans: "healthier", hint: "healthy -> healthier" },
+                { q: "A plane flies ______ than a bird.", options: ["fast", "faster", "more fast"], ans: "faster", hint: "fast 的比較級加 er" },
+                { q: "My room is ______ than yours.", options: ["dirtier", "more dirty", "dirtyer"], ans: "dirtier", hint: "dirty -> dirtier" },
+                { q: "Doing exercise makes you ______ than sitting all day.", options: ["stronger", "more strong", "strongier"], ans: "stronger", hint: "strong -> stronger" },
+                { q: "This story is ______ than the one you told me.", options: ["funnyer", "funnier", "more funny"], ans: "funnier", hint: "funny -> funnier" }
             ];
             return shuffleArray(pool);
         };
 
-        // --- Unit 5 文法重組句子 (嚴格符合文法規則) ---
-        const generateUnit5GrammarScramble = () => {
+        // --- Unit 1 文法重組句子 (原 Unit 5) ---
+        const generateUnit1GrammarScramble = () => {
             const sentences = [
-                // Dative Verbs (To)
-                { s: "My friend sent a postcard to me.", ch: "我的朋友寄了一張明信片給我。" },
-                { s: "Linda showed her drawings to us.", ch: "Linda 展示她的畫給我們看。" },
-                { s: "Eddie brought a DVD to his classmate.", ch: "Eddie 帶了一張DVD給他的同學。" },
-                { s: "Tina gave a cup of tea to her guest.", ch: "Tina 給了她的客人一杯茶。" },
-                { s: "I wrote a letter to my grandmother.", ch: "我寫了一封信給我的祖母。" },
-                { s: "Please lend your pen to me.", ch: "請把你的筆借給我。" },
-                { s: "Pass the salt to me.", ch: "請把鹽傳給我。" },
+                // 虛主詞 It
+                { s: "It is important to wash your hands.", ch: "洗手是很重要的。(It is...)" },
+                { s: "It is polite to say thank you.", ch: "說謝謝是有禮貌的。" },
+                { s: "It is convenient to take the bus.", ch: "搭公車很方便。" },
+                { s: "It is dangerous to swim alone.", ch: "獨自游泳很危險。" },
+                { s: "It is exciting to watch the game.", ch: "看比賽很刺激。" },
                 
-                // Dative Verbs (For)
-                { s: "Cindy got a bone for her dog.", ch: "Cindy 弄了一根骨頭給她的狗。" },
-                { s: "Richard bought a pet dog for his son.", ch: "Richard 買了一隻寵物狗給他兒子。" },
-                { s: "My dad cooked dinner for the family.", ch: "我爸爸為全家人煮晚餐。" },
-                { s: "They built a new house for the poor family.", ch: "他們為這貧困家庭蓋了一間新房子。" },
-                { s: "Mom made a cake for us.", ch: "媽媽為我們做了一個蛋糕。" },
-                { s: "He ordered a pizza for his friends.", ch: "他為他的朋友們點了一個披薩。" },
-                { s: "Please save a seat for me.", ch: "請幫我留個位子。" },
-
-                // S + V + IO + DO (無介系詞)
-                { s: "My mom gave me a watch.", ch: "我媽媽給了我一支手錶。" },
-                { s: "He sent her a flower.", ch: "他送了她一朵花。" },
-                { s: "Please show me your ticket.", ch: "請出示你的票給我看。" },
-
-                // Not only... but also...
-                { s: "The window is not only clean but also bright.", ch: "這扇窗戶不僅乾淨而且明亮。" },
-                { s: "The kid can not only draw but also write.", ch: "這孩子不僅會畫畫還會寫字。" },
-                { s: "Not only the moon but also the lights are bright.", ch: "不僅月亮，連燈光也很亮。(動詞配合 lights)" },
-                { s: "Not only Sam but also Cali works at the store.", ch: "不僅 Sam，連 Cali 也在店裡工作。(動詞配合 Cali)" },
-                { s: "Daniel can speak not only English but also Japanese.", ch: "Daniel 不僅會說英文還會說日文。" },
-                { s: "Not only you but also I am a student.", ch: "不僅你，我也是學生。(動詞配合 I)" },
-                { s: "She speaks not only loudly but also clearly.", ch: "她說話不僅大聲而且清楚。" },
-                { s: "He is famous not only for his songs but also for his acting.", ch: "他不只以歌曲聞名，也以演技著稱。" }
+                // 比較級
+                { s: "My brother is taller than I am.", ch: "我哥哥比我高。" },
+                { s: "The weather today is worse than yesterday.", ch: "今天的天氣比昨天差。" },
+                { s: "Sandy sings more beautifully than anyone.", ch: "Sandy 唱得比任何人都好聽。" },
+                { s: "The MRT is more convenient than the bus.", ch: "捷運比公車方便。" },
+                { s: "This smartphone is thinner than that one.", ch: "這支智慧型手機比那一支薄。" },
+                { s: "A plane flies faster than a bird.", ch: "飛機飛得比鳥快。" }
             ];
             return sentences.map((item, index) => ({
-                id: `u5-grammar-sc-${index}`,
+                id: `u1-grammar-sc-${index}`,
                 sentence: item.s,
                 sentence_ch: item.ch
             }));
         };
 
-        // --- Unit 6 文法題庫生成 (50題: 動名詞/不定詞主詞 & 祈使句) ---
-        const generateUnit6QuizPool = () => {
+        // --- Unit 2 文法題庫生成 (原 Unit 6: 名詞子句 & 感官動詞) ---
+        const generateUnit2QuizPool = () => {
             const pool = [
-                { q: "______ English is interesting and useful.", options: ["Learn", "Learning", "Learns"], ans: "Learning", hint: "動名詞(V-ing)當主詞視為單數" },
-                { q: "______ quiet, please. The baby is sleeping.", options: ["Be", "Is", "To be"], ans: "Be", hint: "祈使句用原形動詞 Be + Adj." },
-                { q: "______ careful! The floor is wet.", options: ["Be", "To be", "Being"], ans: "Be", hint: "祈使句用原形動詞 Be" },
-                { q: "______ TV too much is bad for your eyes.", options: ["Watch", "Watching", "Watches"], ans: "Watching", hint: "動名詞當主詞" },
-                { q: "______ open the door. It's cold outside.", options: ["Not", "Don't", "No"], ans: "Don't", hint: "否定祈使句 Don't + V" },
-                { q: "To read comic books ______ fun.", options: ["is", "are", "be"], ans: "is", hint: "不定詞當主詞視為單數" },
-                { q: "______ your homework before you go out.", options: ["Doing", "To do", "Do"], ans: "Do", hint: "祈使句用原形動詞" },
-                { q: "______ exercise every day is a good habit.", options: ["Take", "Taking", "Takes"], ans: "Taking", hint: "動名詞當主詞" },
-                { q: "Please ______ run in the classroom.", options: ["don't", "not", "no"], ans: "don't", hint: "Please don't..." },
-                { q: "______ late for school.", options: ["Don't", "Don't be", "Not be"], ans: "Don't be", hint: "否定祈使句 Don't + be + Adj" },
-                { q: "Collecting stamps ______ my hobby.", options: ["is", "are", "be"], ans: "is", hint: "動名詞當主詞視為單數" },
-                { q: "______ nice to your classmates.", options: ["Be", "Is", "Being"], ans: "Be", hint: "祈使句 Be + Adj" },
-                { q: "______ hard, and you will pass the test.", options: ["Studying", "To study", "Study"], ans: "Study", hint: "祈使句 + and (那麼...)" },
-                { q: "______ up early, or you will miss the bus.", options: ["Get", "Getting", "To get"], ans: "Get", hint: "祈使句 + or (否則...)" },
-                { q: "______ trash on the floor is not good.", options: ["Throw", "Throwing", "Throws"], ans: "Throwing", hint: "動名詞當主詞" },
-                { q: "______ a doctor is his dream.", options: ["Be", "Being", "Is"], ans: "Being", hint: "動名詞當主詞" },
-                { q: "Let's ______ a song together.", options: ["sing", "singing", "to sing"], ans: "sing", hint: "Let's + 原形動詞" },
-                { q: "Don't ______ shy. Come in.", options: ["be", "is", "to be"], ans: "be", hint: "Don't be + Adj" },
-                { q: "Making cakes ______ not easy.", options: ["is", "are", "be"], ans: "is", hint: "動名詞當主詞視為單數" },
-                { q: "______ the window, please.", options: ["Don't open", "Not open", "No open"], ans: "Don't open", hint: "否定祈使句" },
-                { q: "It is fun ______ computer games.", options: ["play", "playing", "to play"], ans: "to play", hint: "It is + Adj + to V (虛主詞用法)" },
-                { q: "______ quiet in the library is a rule.", options: ["Keep", "Keeping", "Keeps"], ans: "Keeping", hint: "動名詞當主詞" },
-                { q: "Let's not ______ about it.", options: ["talk", "talking", "to talk"], ans: "talk", hint: "Let's not + 原形" },
-                { q: "______ good care of your health.", options: ["Take", "Taking", "To take"], ans: "Take", hint: "祈使句 (Take care)" },
-                { q: "Seeing is ______.", options: ["believe", "believing", "believes"], ans: "believing", hint: "眼見為憑 (主詞補語用動名詞)" },
-                { q: "______ touch the exhibits in the museum.", options: ["No", "Don't", "Not"], ans: "Don't", hint: "否定祈使句" },
-                { q: "______ polite to your teachers.", options: ["Be", "Do", "Is"], ans: "Be", hint: "祈使句 Be + Adj" },
-                { q: "______ vegetables is good for your health.", options: ["Eat", "Eating", "Eats"], ans: "Eating", hint: "動名詞當主詞" },
-                { q: "Please ______ talk in the library.", options: ["don't", "no", "not"], ans: "don't", hint: "Please don't..." },
-                { q: "______ time with family is important.", options: ["Spend", "Spending", "Spends"], ans: "Spending", hint: "動名詞當主詞" },
-                { q: "Stand up, ______?", options: ["will you", "do you", "are you"], ans: "will you", hint: "祈使句附加問句用 will you" },
-                { q: "______ worry. Everything will be fine.", options: ["Not", "No", "Don't"], ans: "Don't", hint: "Don't worry." },
-                { q: "______ swim in this river. It's dangerous.", options: ["Don't", "No", "Not"], ans: "Don't", hint: "否定祈使句" },
-                { q: "Jogging ______ my favorite sport.", options: ["is", "are", "be"], ans: "is", hint: "動名詞當主詞" },
-                { q: "______ a noisy boy.", options: ["Don't be", "Not be", "Don't"], ans: "Don't be", hint: "否定祈使句 (Don't be + N)" },
-                { q: "______ early is good for your health.", options: ["Sleep", "Sleeping", "Sleeps"], ans: "Sleeping", hint: "動名詞當主詞" },
-                { q: "Let's ______ for a walk.", options: ["go", "going", "to go"], ans: "go", hint: "Let's + 原形" },
-                { q: "______ kind to animals.", options: ["Be", "Is", "Being"], ans: "Be", hint: "祈使句 Be + Adj" },
-                { q: "My hobby is ______ stamps.", options: ["collect", "collecting", "collects"], ans: "collecting", hint: "主詞補語 (動名詞)" },
-                { q: "______ quiet, or the teacher will be angry.", options: ["Be", "To be", "Being"], ans: "Be", hint: "祈使句" },
-                { q: "______ is easy to learn English.", options: ["That", "This", "It"], ans: "It", hint: "虛主詞 It" },
-                { q: "______ not play with fire.", options: ["Let's", "Don't", "Not"], ans: "Let's", hint: "Let's not..." },
-                { q: "______ lies is wrong.", options: ["Tell", "Telling", "Tells"], ans: "Telling", hint: "動名詞當主詞" },
-                { q: "Always ______ honest.", options: ["be", "is", "to be"], ans: "be", hint: "Always + 原形 (祈使句)" },
-                { q: "To help others ______ me happy.", options: ["make", "makes", "making"], ans: "makes", hint: "不定詞當主詞視為單數" },
-                { q: "______ eat or drink in the metro.", options: ["No", "Don't", "Not"], ans: "Don't", hint: "否定祈使句" },
-                { q: "Brush your teeth, ______ wash your face.", options: ["and", "or", "but"], ans: "and", hint: "祈使句 + and (連接動作)" },
-                { q: "______ parking here.", options: ["No", "Don't", "Not"], ans: "No", hint: "No + V-ing (禁止...)" },
-                { q: "______ your room clean.", options: ["Keep", "Keeping", "To keep"], ans: "Keep", hint: "祈使句" },
-                { q: "Listening to music ______ me relax.", options: ["help", "helps", "helping"], ans: "helps", hint: "動名詞當主詞視為單數" }
+                // Part 1: 名詞子句 (that 子句)
+                { q: "I believe ________ we can save the Earth if we recycle more garbage.", options: ["that", "what", "who"], ans: "that", hint: "believe + that 子句當受詞" },
+                { q: "Our teacher explained ________ the moon goes around the Earth.", options: ["which", "that", "how"], ans: "that", hint: "explain + that 子句 (解釋一件事實)" },
+                { q: "Jenny said ________ she would come to the party tonight.", options: ["this", "who", "that"], ans: "that", hint: "say + that 子句" },
+                { q: "Most people know ________ exercise is good for their health.", options: ["if", "that", "which"], ans: "that", hint: "know + that 子句 (知道一件事)" },
+                { q: "We hope ________ the weather will be fine tomorrow for our picnic.", options: ["that", "where", "when"], ans: "that", hint: "hope + that 子句" },
+                { q: "Jack realized ________ he had left his wallet at home.", options: ["that", "who", "what"], ans: "that", hint: "realize + that 子句" },
+                { q: "Do you think ________ it is possible to finish the work in one day?", options: ["that", "which", "who"], ans: "that", hint: "think + that 子句" },
+                { q: "The news reported ________ many people lost their homes in the earthquake.", options: ["who", "that", "what"], ans: "that", hint: "report + that 子句" },
+                { q: "I am sure ________ your hard work will lead to success.", options: ["which", "that", "where"], ans: "that", hint: "be sure + that 子句" },
+                { q: "My parents feel ________ I should spend more time on my studies.", options: ["that", "who", "what"], ans: "that", hint: "feel + that 子句" },
+                { q: "He told me ________ he had already seen that movie twice.", options: ["who", "which", "that"], ans: "that", hint: "tell sb + that 子句" },
+                { q: "Scientists found ________ the temperature of the planet is rising.", options: ["that", "where", "who"], ans: "that", hint: "found (發現) + that 子句" },
+                { q: "Mom thinks ________ the food in that restaurant is too expensive.", options: ["which", "that", "what"], ans: "that", hint: "think + that 子句" },
+                { q: "Do you understand ________ time is more important than money?", options: ["who", "where", "that"], ans: "that", hint: "understand + that 子句" },
+                { q: "I noticed ________ some students were sleeping in the class.", options: ["that", "which", "what"], ans: "that", hint: "notice + that 子句" },
+                { q: "They hope ________ the new law can help the environment.", options: ["who", "that", "which"], ans: "that", hint: "hope + that 子句" },
+                { q: "I heard ________ our English teacher is going to get married.", options: ["that", "what", "where"], ans: "that", hint: "hear + that 子句 (聽說)" },
+                { q: "Everyone agrees ________ we should be polite to others.", options: ["which", "who", "that"], ans: "that", hint: "agree + that 子句" },
+                { q: "Did you know ________ there are many different cultures in the world?", options: ["that", "what", "which"], ans: "that", hint: "know + that 子句" },
+                { q: "I hope ________ my dream will come true some day.", options: ["which", "that", "who"], ans: "that", hint: "hope + that 子句" },
+                { q: "The boss said ________ the meeting would start at nine.", options: ["that", "who", "what"], ans: "that", hint: "say + that 子句" },
+                { q: "We believe ________ education can change a person's life.", options: ["which", "that", "where"], ans: "that", hint: "believe + that 子句" },
+                { q: "He realized ________ he was wrong about the answer.", options: ["who", "what", "that"], ans: "that", hint: "realize + that 子句" },
+                { q: "My sister thinks ________ learning English is fun.", options: ["that", "which", "who"], ans: "that", hint: "think + that 子句" },
+                { q: "I hope ________ Nancy will like the gift I bought for her.", options: ["what", "that", "which"], ans: "that", hint: "hope + that 子句" },
+
+                // Part 2: 感官動詞 (see, hear, watch, etc.)
+                { q: "I saw a little girl ________ a flower in the garden.", options: ["to pick", "picking", "picks"], ans: "picking", hint: "see + O + V-ing (看見正在做)" },
+                { q: "Did you hear the phone ________ just now?", options: ["ring", "to ring", "rang"], ans: "ring", hint: "hear + O + VR (聽見響了)" },
+                { q: "We watched the sun ________ over the sea.", options: ["to rise", "rising", "rises"], ans: "rising", hint: "watch + O + V-ing (觀看正在上升)" },
+                { q: "I felt something ________ on my arm.", options: ["to crawl", "crawling", "crawls"], ans: "crawling", hint: "feel + O + V-ing (感覺正在爬)" },
+                { q: "Mom listened to the birds ________ in the trees.", options: ["singing", "to sing", "sang"], ans: "singing", hint: "listen to + O + V-ing (聽見正在唱)" },
+                { q: "He noticed a stranger ________ into the building.", options: ["to enter", "enter", "enters"], ans: "enter", hint: "notice + O + VR (注意到進入的事實)" },
+                { q: "Did you see Kevin ________ his homework in the library?", options: ["to do", "doing", "does"], ans: "doing", hint: "see + O + V-ing (看見正在做)" },
+                { q: "I heard my brother ________ in the bathroom.", options: ["to cry", "cry", "cries"], ans: "cry", hint: "hear + O + VR (聽見哭了)" },
+                { q: "We saw the airplane ________ across the sky.", options: ["flying", "to fly", "flies"], ans: "flying", hint: "see + O + V-ing (看見正在飛)" },
+                { q: "The teacher watched the students ________ the game.", options: ["to play", "playing", "played"], ans: "playing", hint: "watch + O + V-ing (觀看正在玩)" },
+                { q: "I felt the house ________ during the earthquake.", options: ["shake", "to shake", "shook"], ans: "shake", hint: "feel + O + VR (感覺搖晃)" },
+                { q: "Did anyone hear the baby ________ upstairs?", options: ["to cry", "crying", "cries"], ans: "crying", hint: "hear + O + V-ing (聽見正在哭)" },
+                { q: "I saw him ________ the street carefully.", options: ["cross", "to cross", "crossed"], ans: "cross", hint: "see + O + VR (看見過馬路的全程)" },
+                { q: "Listen to the rain ________ against the window.", options: ["hitting", "to hit", "hits"], ans: "hitting", hint: "listen to + O + V-ing (聽著雨打在窗上)" },
+                { q: "We watched the magician ________ a rabbit out of the hat.", options: ["pull", "to pull", "pulled"], ans: "pull", hint: "watch + O + VR (觀看變出的過程)" },
+                { q: "I noticed my father ________ a new tie today.", options: ["to wear", "wearing", "wears"], ans: "wearing", hint: "notice + O + V-ing (注意到戴著)" },
+                { q: "Did you see the cat ________ down from the wall?", options: ["to jump", "jumping", "jumps"], ans: "jumping", hint: "see + O + V-ing (看見正在跳)" },
+                { q: "I heard someone ________ my name outside.", options: ["to call", "call", "called"], ans: "call", hint: "hear + O + VR (聽見叫喚)" },
+                { q: "We felt the wind ________ colder and colder.", options: ["getting", "to get", "got"], ans: "getting", hint: "feel + O + V-ing (感覺正在變冷)" },
+                { q: "She watched her brother ________ his bicycle.", options: ["fix", "to fix", "fixed"], ans: "fix", hint: "watch + O + VR (看著修理)" },
+                { q: "Did you notice the dog ________ after the ball?", options: ["to run", "running", "runs"], ans: "running", hint: "notice + O + V-ing (注意到正在跑)" },
+                { q: "I heard the door ________ loudly.", options: ["to close", "close", "closed"], ans: "close", hint: "hear + O + VR (聽見關門聲)" },
+                { q: "We saw many people ________ in the park.", options: ["to dance", "dancing", "dances"], ans: "dancing", hint: "see + O + V-ing (看見正在跳舞)" },
+                { q: "I watched him ________ the letter and then burn it.", options: ["read", "to read", "reading"], ans: "read", hint: "watch + O + VR (and then burn it 暗示連續動作，用原形)" },
+                { q: "Can you feel your heart ________ fast?", options: ["beat", "to beat", "beats"], ans: "beat", hint: "feel + O + VR (感覺跳動)" }
             ];
             return shuffleArray(pool);
         };
 
-        // --- Unit 6 文法重組句子 (嚴格符合文法規則) ---
-        const generateUnit6GrammarScramble = () => {
+        // --- Unit 2 文法重組句子 (原 Unit 6) ---
+        const generateUnit2GrammarScramble = () => {
             const sentences = [
-                // Gerunds/Infinitives as Subject
-                { s: "To share my music with people is a wonderful thing.", ch: "與人們分享我的音樂是一件美好的事。" },
-                { s: "Being famous is tiring.", ch: "成名是很累人的。" },
-                { s: "Talking to my fans makes me happy.", ch: "跟我的粉絲說話讓我很快樂。" },
-                { s: "Listening to music helps me relax.", ch: "聽音樂幫助我放鬆。" },
-                { s: "To train a service dog is not easy.", ch: "訓練一隻服務犬是不容易的。" },
-                { s: "Reading comic books is fun.", ch: "看漫畫是有趣的。(Reading當主詞)" },
-                { s: "Jogging every day keeps me healthy.", ch: "每天慢跑讓我保持健康。" },
-                { s: "Playing video games is exciting.", ch: "玩電動遊戲是刺激的。" },
-                { s: "Getting up early is a good habit.", ch: "早起是個好習慣。" },
-                { s: "Making friends is easy for him.", ch: "交朋友對他來說很容易。" },
-                { s: "Collecting stamps is his hobby.", ch: "集郵是他的興趣。" },
-
-                // Imperatives (Affirmative/Negative/Let's)
-                { s: "Give me some hints.", ch: "給我一些提示。" },
-                { s: "Never say never.", ch: "永不說不。" },
-                { s: "Please take the garbage out.", ch: "請把垃圾拿出去。" },
-                { s: "Please be on time for the meeting.", ch: "開會請準時。" },
-                { s: "Never run a red light.", ch: "絕對不要闖紅燈。" },
-                { s: "Don't draw on the desk.", ch: "不要在桌上畫畫。" },
-                { s: "Let's have lunch together.", ch: "我們一起吃午餐吧。" },
-                { s: "Let's not go out tonight.", ch: "我們今晚不要出門吧。" },
-                { s: "Don't worry about it.", ch: "別擔心這件事。" },
-                { s: "Please listen to the teacher.", ch: "請聽老師說話。" },
-                { s: "Keep your room clean.", ch: "保持你的房間整潔。" },
-                { s: "Be nice to your sister.", ch: "對你的妹妹好一點。" }
+                // Noun Clauses
+                { s: "I believe that we can save the Earth.", ch: "我相信我們可以拯救地球。" },
+                { s: "Jenny said that she would come to the party.", ch: "Jenny 說她會來參加派對。" },
+                { s: "Most people know that exercise is good.", ch: "大多數人知道運動是好的。" },
+                { s: "I hope that my dream will come true.", ch: "我希望我的夢想會成真。" },
+                
+                // Sensory Verbs
+                { s: "I saw a little girl picking a flower.", ch: "我看見一個小女孩正在摘花。" },
+                { s: "We watched the sun rising over the sea.", ch: "我們看著太陽從海面升起。" },
+                { s: "I heard someone call my name.", ch: "我聽見有人叫我的名字。" },
+                { s: "He noticed a stranger enter the building.", ch: "他注意到一個陌生人進入大樓。" },
+                { s: "I saw him cross the street carefully.", ch: "我看見他小心地過馬路。" },
+                { s: "Listen to the rain hitting against the window.", ch: "聽那雨水打在窗戶上的聲音。" }
             ];
             return sentences.map((item, index) => ({
-                id: `u6-grammar-sc-${index}`,
+                id: `u2-grammar-sc-${index}`,
                 sentence: item.s,
                 sentence_ch: item.ch
             }));
         };
 
-        // --- Unit 5 單字資料 (Vocab Data) ---
-        const unit5VocabData = [
-            { id: "u5-1", word: "human", part: "n.", chinese: "人類", sentence: "There are no humans but only animals on that island.", sentence_ch: "那個島上沒有人類，只有動物。" },
-            { id: "u5-2", word: "relationship", part: "n.", chinese: "關係", sentence: "They have a very close relationship.", sentence_ch: "他們的關係非常親密。" },
-            { id: "u5-3", word: "illegal", part: "adj.", chinese: "違法的，非法的", sentence: "In some cities, it is illegal to smoke in public places.", sentence_ch: "在某些城市，在公共場所吸菸是違法的。" },
-            { id: "u5-4", word: "drug", part: "n.", chinese: "毒品", sentence: "The man became excited after he took drugs.", sentence_ch: "那個男人吸毒後變得很興奮。" },
-            { id: "u5-5", word: "serve", part: "vi.; vt.", chinese: "擔任；服務", sentence: "Jim served as the class leader last year, and he did a great job.", sentence_ch: "Jim 去年擔任班長，他做得很好。" },
-            { id: "u5-6", word: "search", part: "n./v.", chinese: "搜尋", sentence: "The police started a long search for the two missing hikers.", sentence_ch: "警方開始對兩名失蹤的登山客進行長時間的搜尋。" },
-            { id: "u5-7", word: "sense", part: "n./v.", chinese: "感官；感覺到", sentence: "Eagles have a sense of sight four to five times stronger than a human does.", sentence_ch: "老鷹的視力比人類強四到五倍。" },
-            { id: "u5-8", word: "missing", part: "adj.", chinese: "失蹤的，遺失的", sentence: "Rita is trying to find her missing glasses in her room.", sentence_ch: "Rita 試著在她房間裡找她不見的眼鏡。" },
-            { id: "u5-9", word: "guide", part: "n./v.", chinese: "導遊；指引", sentence: "Zoe loves to travel, so her dream is to become a tour guide one day.", sentence_ch: "Zoe 熱愛旅遊，所以她的夢想是有一天成為導遊。" },
-            { id: "u5-10", word: "characteristic", part: "n.", chinese: "特徵，特性", sentence: "Light colors are a main characteristic of Alan’s art creations.", sentence_ch: "淺色調是 Alan 藝術創作的主要特徵。" },
-            { id: "u5-11", word: "focus", part: "v./n.", chinese: "集中(注意力)；焦點", sentence: "I cannot focus on my TOEIC test because the guy behind me is kicking my chair.", sentence_ch: "我無法專注在多益考試上，因為後面的人在踢我的椅子。" },
-            { id: "u5-12", word: "energy", part: "n.", chinese: "精力；能源", sentence: "My grandma is full of energy. She dances for two hours every day!", sentence_ch: "我的阿嬤精力充沛，她每天跳舞兩個小時！" },
-            { id: "u5-13", word: "train", part: "v.", chinese: "訓練", sentence: "Derek is training the baseball players to hit the ball with power.", sentence_ch: "Derek 正在訓練棒球選手強而有力地擊球。" },
-            { id: "u5-14", word: "certainly", part: "adv.", chinese: "肯定", sentence: "The Los Angeles Lakers will certainly win since the game is about to end.", sentence_ch: "洛杉磯湖人隊肯定會贏，因為比賽快結束了。" },
-            { id: "u5-15", word: "at first", part: "phr.", chinese: "起初，一開始", sentence: "The meal was hot at first, but it turned cold after I took several pictures.", sentence_ch: "這頓飯起初是熱的，但我拍了幾張照片後就冷掉了。" },
-            { id: "u5-16", word: "in fact", part: "phr.", chinese: "事實上", sentence: "I am lucky. In fact, I just won ten million dollars!", sentence_ch: "我很幸運。事實上，我剛贏了一千萬！" },
-            { id: "u5-17", word: "thanks to", part: "phr.", chinese: "由於，幸虧", sentence: "Thanks to Google Maps, we quickly found the hospital.", sentence_ch: "幸虧有 Google 地圖，我們很快找到了醫院。" },
-            { id: "u5-18", word: "get into", part: "phr.", chinese: "進入", sentence: "I don’t have the ticket, so I can’t get into the train station.", sentence_ch: "我沒有票，所以進不去火車站。" },
-            { id: "u5-19", word: "look for", part: "phr.", chinese: "尋找", sentence: "Jane is looking for her eraser on the ground.", sentence_ch: "Jane 正在地上找她的橡皮擦。" }
+        // --- Unit 1 單字資料 (Vocab Data) - 更新版 ---
+        const unit1VocabData = [
+            { id: "u1-1", word: "attraction", part: "n.", chinese: "有吸引力的景點、事物", sentence: "Jiufen is a very popular tourist attraction in Taiwan.", sentence_ch: "九份是台灣非常受歡迎的觀光景點。" },
+            { id: "u1-2", word: "local", part: "adj.", chinese: "當地的", sentence: "Our hotel is close to the local beach. We can walk there in three minutes.", sentence_ch: "我們的飯店靠近當地的海灘。我們走路三分鐘就能到。" },
+            { id: "u1-3", word: "locals", part: "n.", chinese: "當地居民", sentence: "When the earthquake hit this town, many of the locals were sleeping.", sentence_ch: "當地震襲擊這個城鎮時，許多當地居民正在睡覺。" },
+            { id: "u1-4", word: "plain", part: "adj.", chinese: "樸素的", sentence: "To everyone’s surprise, Lady Gaga wore a plain dress to the party.", sentence_ch: "令大家驚訝的是，Lady Gaga 穿了一件樸素的洋裝去參加派對。" },
+            { id: "u1-5", word: "counter", part: "n.", chinese: "櫃臺", sentence: "A lot of people in the SOGO department store are waiting in front of the counter to get a free gift.", sentence_ch: "SOGO 百貨公司裡有很多人在櫃檯前排隊領取免費贈品。" },
+            { id: "u1-6", word: "hug", part: "v.", chinese: "擁抱", sentence: "The couple hug each other every time they meet.", sentence_ch: "這對情侶每次見面都會互相擁抱。" },
+            { id: "u1-7", word: "pleased", part: "adj.", chinese: "高興的，滿意的", sentence: "Ann was not pleased with her fries at the restaurant. They were cold.", sentence_ch: "Ann 對餐廳的薯條不滿意。它們是冷的。" },
+            { id: "u1-8", word: "mood", part: "n.", chinese: "心情，情緒", sentence: "Justin is in a good mood because the long weekend is coming.", sentence_ch: "Justin 心情很好，因為長週末快到了。" },
+            { id: "u1-9", word: "unfairly", part: "adv.", chinese: "不公平地", sentence: "Daniel is angry about being treated unfairly by his boss.", sentence_ch: "Daniel 對被老闆不公平對待感到生氣。" },
+            { id: "u1-10", word: "fair", part: "adj.", chinese: "公平的", sentence: "The rules of a game should be fair to all the players.", sentence_ch: "遊戲規則對所有玩家都應該是公平的。" },
+            { id: "u1-11", word: "observe", part: "v.", chinese: "觀察", sentence: "The clerk was bored, so he started to observe the people in the store.", sentence_ch: "店員很無聊，所以他開始觀察店裡的人。" },
+            { id: "u1-12", word: "observation", part: "n.", chinese: "觀察", sentence: "The sick boy cannot go home. He needs to be kept under observation in the hospital.", sentence_ch: "生病的男孩不能回家。他需要在醫院留院觀察。" },
+            { id: "u1-13", word: "customer", part: "n.", chinese: "顧客", sentence: "The shop serves customers till 5 p.m. every day.", sentence_ch: "這家店每天服務顧客到下午五點。" },
+            { id: "u1-14", word: "seem", part: "v.", chinese: "好像，似乎", sentence: "From his Facebook photo, Larry seems to have a new girlfriend.", sentence_ch: "從他的臉書照片看來，Larry 似乎有了新女朋友。" },
+            { id: "u1-15", word: "reveal", part: "v.", chinese: "揭露，透露", sentence: "The news reveals that the convenience store will hold a special event.", sentence_ch: "新聞透露便利商店將舉辦特別活動。" },
+            { id: "u1-16", word: "secret", part: "n.", chinese: "秘密", sentence: "Helen is good at keeping secrets, so you won't hear anything from her.", sentence_ch: "Helen 很會保守秘密，所以你不會從她那裡聽到任何事。" },
+            { id: "u1-17", word: "secret", part: "adj.", chinese: "秘密的", sentence: "In the movie, four kids found a secret gate to a magic land in their house.", sentence_ch: "電影中，四個孩子在他們家裡發現了一道通往魔法世界的秘密之門。" },
+            { id: "u1-18", word: "amazed", part: "adj.", chinese: "感到驚奇的", sentence: "My dog just shook hands with me. I am really amazed by its new trick.", sentence_ch: "我的狗剛剛跟我握手。我對牠的新把戲感到很驚奇。" },
+            { id: "u1-19", word: "amaze", part: "v.", chinese: "使驚奇", sentence: "It amazed the old man that the phone app could speak to him.", sentence_ch: "手機應用程式會對他說話，這讓老人感到很驚奇。" },
+            { id: "u1-20", word: "earn", part: "v.", chinese: "贏得，賺（錢）", sentence: "My grandpa is kind to everyone. This earns him many friends.", sentence_ch: "我的爺爺對每個人都很和善。這讓他贏得了許多朋友。" },
+            { id: "u1-21", word: "pay off", part: "phr.", chinese: "得到好結果", sentence: "After months of hard work, Eva’s efforts to improve her grades finally paid off.", sentence_ch: "經過幾個月的努力，Eva 提升成績的努力終於得到了回報。" },
+            { id: "u1-22", word: "right away", part: "phr.", chinese: "立刻，馬上", sentence: "When the Korean actor appeared, his fans ran to him right away.", sentence_ch: "當那位韓國男演員出現時，他的粉絲立刻跑向他。" },
+            { id: "u1-23", word: "stand out", part: "phr.", chinese: "突出，出眾", sentence: "Among the four smartphones, the silver one stands out because it is equipped with the best camera.", sentence_ch: "在這四支智慧型手機中，銀色那支很突出，因為它配備了最好的相機。" },
+            { id: "u1-24", word: "burst out", part: "phr.", chinese: "突然...", sentence: "When the boy burst out laughing on the MRT, many people looked at him strangely.", sentence_ch: "當那個男孩在捷運上突然大笑時，許多人用奇怪的眼光看著他。" },
+            { id: "u1-25", word: "have nothing to do with", part: "phr.", chinese: "與...無關", sentence: "Although Sam was born into an acting family, his job has nothing to do with that.", sentence_ch: "雖然 Sam 出生於演藝世家，但他的工作與此無關。" }
         ];
 
-        // --- Unit 6 單字資料 (Vocab Data) ---
-        const unit6VocabData = [
-            { id: "u6-1", word: "artist", part: "n.", chinese: "藝術家", sentence: "That artist is drawing a picture of the tourist.", sentence_ch: "那位藝術家正在畫那名遊客。" },
-            { id: "u6-2", word: "achieve", part: "vt.", chinese: "獲得，達到", sentence: "Tim finally achieved his dream of becoming a dentist.", sentence_ch: "Tim 終於實現了他成為牙醫的夢想。" },
-            { id: "u6-3", word: "view", part: "v./n.", chinese: "看待；看法", sentence: "I view Ruby as my best friend, so I always share my secrets with her.", sentence_ch: "我把 Ruby 視為我最好的朋友，所以我總是和她分享我的秘密。" },
-            { id: "u6-4", word: "familiar", part: "adj.", chinese: "熟悉的", sentence: "That girl looks familiar, but I don’t remember her name.", sentence_ch: "那個女孩看起來很眼熟，但我不記得她的名字了。" },
-            { id: "u6-5", word: "social", part: "adj.", chinese: "社交的；社會的", sentence: "The guitar club will have a social event today to welcome the new members.", sentence_ch: "吉他社今天將舉辦社交活動來歡迎新成員。" },
-            { id: "u6-6", word: "article", part: "n.", chinese: "文章", sentence: "There is an article about I. M. Pei and his works in today's newspaper.", sentence_ch: "今天的報紙有一篇關於貝聿銘及其作品的文章。" },
-            { id: "u6-7", word: "post", part: "v./n.", chinese: "張貼；網路貼文", sentence: "Oscar posted a note on Amy's desk.", sentence_ch: "Oscar 在 Amy 的桌上貼了一張便條。" },
-            { id: "u6-8", word: "instant", part: "adj.", chinese: "立即的", sentence: "I need some coffee to give me instant energy.", sentence_ch: "我需要一些咖啡來給我即時的能量。" },
-            { id: "u6-9", word: "attention", part: "n.", chinese: "注意", sentence: "The baby is crying so loud to catch his mom's attention.", sentence_ch: "寶寶哭得很大聲以引起媽媽的注意。" },
-            { id: "u6-10", word: "spread", part: "v./n.", chinese: "散布，傳播", sentence: "The news of Ms. Lin's leaving spread quickly in the school.", sentence_ch: "林老師離開的消息在學校傳得很快。" },
-            { id: "u6-11", word: "advantage", part: "n.", chinese: "好處，優點", sentence: "Being able to make free calls is one of the advantages of LINE.", sentence_ch: "能夠免費通話是 LINE 的優點之一。" },
-            { id: "u6-12", word: "technology", part: "n.", chinese: "科技", sentence: "Thanks to modern technology, I can buy things easily with my smartphone.", sentence_ch: "多虧了現代科技，我可以用智慧型手機輕鬆購物。" },
-            { id: "u6-13", word: "trend", part: "n.", chinese: "潮流，趨勢", sentence: "Nowadays, there is a growing trend toward bringing one's own bags to shop.", sentence_ch: "現今，自備購物袋去購物的趨勢日益增長。" },
-            { id: "u6-14", word: "discuss", part: "vt.", chinese: "討論", sentence: "Dustin and I are discussing our trip to Disneyland this summer.", sentence_ch: "Dustin 和我正在討論我們今年夏天的迪士尼樂園之旅。" },
-            { id: "u6-15", word: "whole", part: "adj./n.", chinese: "全部的；整體", sentence: "Jane ate the whole box of Suncakes because she was so hungry.", sentence_ch: "Jane 餓壞了，所以吃了一整盒太陽餅。" },
-            { id: "u6-16", word: "no longer", part: "phr.", chinese: "不再", sentence: "After days of rest at home, Gina is no longer sick.", sentence_ch: "在家休息幾天後，Gina 不再生病了。" },
-            { id: "u6-17", word: "take advantage of", part: "phr.", chinese: "利用", sentence: "Ms. Ho took advantage of the good weather to wash her car.", sentence_ch: "何女士利用好天氣洗了她的車。" },
-            { id: "u6-18", word: "as soon as", part: "phr.", chinese: "一...就...", sentence: "As soon as I stood up, my phone dropped into the toilet.", sentence_ch: "我一站起來，手機就掉進馬桶了。" },
-            { id: "u6-19", word: "end up", part: "phr.", chinese: "最後...；以...結束", sentence: "Because it was raining heavily, Jason ended up getting wet on his way home.", sentence_ch: "因為雨下得很大，Jason 回家途中最後淋濕了。" }
+        // --- Unit 2 單字資料 (Vocab Data) - 更新版 ---
+        const unit2VocabData = [
+            { id: "u2-1", word: "rural", part: "adj.", chinese: "農村的，鄉村的", sentence: "A farmer is riding his motorcycle on a rural road.", sentence_ch: "一位農夫正騎著摩托車行駛在鄉間小路上。" },
+            { id: "u2-2", word: "plastic", part: "adj.", chinese: "塑膠的", sentence: "Leo likes to use plastic water bottles because they are light and easy to carry.", sentence_ch: "Leo 喜歡使用塑膠水壺，因為它們很輕且容易攜帶。" },
+            { id: "u2-3", word: "discover", part: "vt.", chinese: "發現", sentence: "I discovered that there was a hole in Nancy's sock.", sentence_ch: "我發現 Nancy 的襪子上有個洞。" },
+            { id: "u2-4", word: "discovery", part: "n.", chinese: "發現", sentence: "The discovery of Ray's musical talent surprised everyone.", sentence_ch: "Ray 音樂天賦的發現讓大家都很驚訝。" },
+            { id: "u2-5", word: "stage", part: "n.", chinese: "舞台", sentence: "Look! The popular singer is singing on the stage!", sentence_ch: "你看！那位受歡迎的歌手正在舞台上唱歌！" },
+            { id: "u2-6", word: "outdoor", part: "adj.", chinese: "戶外的", sentence: "Emily enjoys many outdoor activities, such as hiking and biking.", sentence_ch: "Emily 喜歡許多戶外活動，例如健行和騎腳踏車。" },
+            { id: "u2-7", word: "outdoors", part: "adv.", chinese: "在戶外", sentence: "It is warm today. Let's have lunch outdoors in the park.", sentence_ch: "今天很溫暖。我們去公園在戶外吃午餐吧。" },
+            { id: "u2-8", word: "chop", part: "vt.", chinese: "切，剁", sentence: "Terry is chopping meat and vegetables into pieces to make fried rice.", sentence_ch: "Terry 正在把肉和蔬菜切塊來做炒飯。" },
+            { id: "u2-9", word: "ingredient", part: "n.", chinese: "食材", sentence: "The main ingredients for making French toast are bread, eggs, and milk.", sentence_ch: "製作法式吐司的主要食材是麵包、雞蛋和牛奶。" },
+            { id: "u2-10", word: "deliver", part: "vt.", chinese: "遞送", sentence: "The mail carrier is chased by a dog when he is delivering letters to the mailboxes in this area.", sentence_ch: "郵差在這個地區送信到信箱時被狗追。" },
+            { id: "u2-11", word: "delivery", part: "n.", chinese: "遞送", sentence: "This restaurant offers free delivery for any order over NT$800.", sentence_ch: "這家餐廳消費滿800元提供免費外送。" },
+            { id: "u2-12", word: "decorate", part: "vt.", chinese: "裝飾", sentence: "Leo decorated his room with some pictures of his favorite comic characters.", sentence_ch: "Leo 用一些他最喜歡的漫畫角色的圖片裝飾他的房間。" },
+            { id: "u2-13", word: "decoration", part: "n.", chinese: "裝飾品", sentence: "Betty hung a Mickey Mouse toy on her backpack as a decoration.", sentence_ch: "Betty 掛了一個米老鼠玩具在背包上作為裝飾。" },
+            { id: "u2-14", word: "meaning", part: "n.", chinese: "含意", sentence: "When you type \"LOL,\" it has the meaning of laughing out loud.", sentence_ch: "當你打 \"LOL\" 時，它的意思是放聲大笑。" },
+            { id: "u2-15", word: "perform", part: "vi.; vt.", chinese: "表演", sentence: "My little sister performed in a play yesterday. She looked so charming on the stage!", sentence_ch: "我妹妹昨天在話劇中表演。她在舞台上看起來很迷人！" },
+            { id: "u2-16", word: "performance", part: "n.", chinese: "表演", sentence: "Many people are watching a performance of popping dance on the street right now.", sentence_ch: "許多人現在正在街上觀看機械舞的表演。" },
+            { id: "u2-17", word: "guest", part: "n.", chinese: "賓客", sentence: "The guests had dinner with us in our house last night.", sentence_ch: "客人們昨晚在我們家和我們一起吃晚餐。" },
+            { id: "u2-18", word: "encourage", part: "vt.", chinese: "鼓勵", sentence: "Judy encouraged me to start my own hair salon business.", sentence_ch: "Judy 鼓勵我創業開髮廊。" },
+            { id: "u2-19", word: "grab", part: "vt.", chinese: "抓取", sentence: "Tom grabbed a sandwich from the table and ran to catch the school bus.", sentence_ch: "Tom 從桌上抓了一個三明治，跑去趕校車。" },
+            { id: "u2-20", word: "custom", part: "n.", chinese: "習俗", sentence: "Dressing in green on St. Patrick's Day is a custom in Ireland and many cities in the United States.", sentence_ch: "在聖派翠克節穿綠色衣服是愛爾蘭和美國許多城市的習俗。" },
+            { id: "u2-21", word: "generous", part: "adj.", chinese: "慷慨的", sentence: "My uncle is very generous. He often provides food for homeless people.", sentence_ch: "我叔叔很慷慨。他經常提供食物給無家可歸的人。" },
+            { id: "u2-22", word: "impress", part: "vt.", chinese: "使印象深刻", sentence: "We were impressed by Katherine's great knowledge of math and science.", sentence_ch: "Katherine 豐富的數學和科學知識讓我們印象深刻。" },
+            { id: "u2-23", word: "impression", part: "n.", chinese: "印象", sentence: "The amazing performance by the Cloud Gate Dance Theatre left a strong impression on me.", sentence_ch: "雲門舞集的精彩表演給我留下了深刻的印象。" },
+            { id: "u2-24", word: "comment", part: "n.", chinese: "評論", sentence: "After Keith read his friend's Facebook post, he left a comment below it.", sentence_ch: "Keith 讀完朋友的臉書貼文後，在下方留了言。" },
+            
+            // Phrases
+            { id: "u2-25", word: "a number of", part: "phr.", chinese: "一些", sentence: "A number of shoes are outside my house. There must be some guests inside.", sentence_ch: "我家門外有一些鞋子。裡面一定有些客人。" },
+            { id: "u2-26", word: "set off", part: "phr.", chinese: "施放", sentence: "Some people are setting off firecrackers in front of the temple to celebrate the god's birthday.", sentence_ch: "有些人正在廟前放鞭炮慶祝神明的生日。" },
+            { id: "u2-27", word: "in total", part: "phr.", chinese: "總共", sentence: "The movie's box office reached ten million US dollars in total last week.", sentence_ch: "這部電影上週的總票房達到了一千萬美元。" },
+            { id: "u2-28", word: "all of a sudden", part: "phr.", chinese: "突然", sentence: "All of a sudden, everyone stopped talking when the teacher entered the classroom.", sentence_ch: "老師一進教室，大家突然停止說話。" }
         ];
 
         // --- 資料庫 (在此處定義，確保前面的生成函式已存在) ---
         const UNITS_DATA = {
-            unit5: {
-                title: "Unit 5",
-                vocab: unit5VocabData,
+            unit1: {
+                title: "Unit 1",
+                vocab: unit1VocabData,
                 grammar: {
                     tips: [
-                        { label: "授與動詞", text: "給人東西：V + 物 + to/for + 人" },
-                        { label: "介系詞口訣", text: "給/寄/秀/借用 to；買/拿/做/煮用 for" },
-                        { label: "Not only... but also", text: "連接詞性要一樣 (Adj配Adj, N配N)" },
-                        { label: "主詞一致", text: "動詞變化看後面那個 (B)" }
+                        { label: "虛主詞 It", text: "It is + adj. + (for 人) + to V...." },
+                        { label: "真主詞", text: "後面的不定詞 (to V) 才是真正的主詞" },
+                        { label: "比較級", text: "A ... 比較級 + than + B" },
+                        { label: "詞性判斷", text: "Be動詞/連綴動詞配形容詞；一般動詞配副詞" }
                     ],
                     notes: [
                         { 
-                            title: "1. 授與動詞 (Dative Verbs)", 
-                            rule: "S + Vt + IO(人) + DO(物) \n→ S + Vt + DO(物) + Prep. + IO(人)", 
-                            desc: "授與動詞牽涉到「給予」的概念，有兩個受詞。若將物品(DO)放在前面，人(IO)放在後面時，必須加上介系詞 to 或 for。", 
+                            title: "1. 虛主詞 It 的用法", 
+                            rule: "It + be 動詞 + 形容詞 (+ for 對象) + to + 原型動詞...", 
+                            desc: "這個文法的核心邏輯是：「主語太長了，先用 It 佔位置，把真正的動作放到後面去。」\n當我們想表達「做某件事是...的」時，如果直接把事情放在句首會顯得頭重腳輕，因此習慣用 It 當作形式上的主詞。", 
                             examples: [
-                                "Hank sent me a postcard. (S + V + 人 + 物)", 
-                                "→ Hank sent a postcard to me. (S + V + 物 + to + 人)", 
-                                "Cindy got her dog a bone.",
-                                "→ Cindy got a bone for her dog. (為了...而做，用 for)"
+                                "To learn English is important. (頭重腳輕)", 
+                                "→ It is important to learn English. (使用虛主詞)", 
+                                "It is dangerous for children to play with fire."
                             ] 
                         },
                         { 
-                            title: "2. 對等連接詞 (Not only... but also...)", 
-                            rule: "not only A but (also) B", 
-                            desc: "1.意思為「不僅 A，還有 B」。A 與 B 的詞性必須相同（名詞配名詞、形容詞配形容詞等）。\n2.當連接兩個主詞時，動詞變化需依據最靠近的 B 決定。", 
+                            title: "2. 形容詞與副詞的比較級", 
+                            rule: "A + 動詞 + 比較級 (er/more...) + than + B", 
+                            desc: "這個文法最難的地方在於：到底要用形容詞（tall）還是副詞（slowly）？\n關鍵在於「動詞」：\n1. 若是 Be 動詞或連綴動詞 (look, feel...)，用形容詞比較級。\n2. 若是一般動詞 (run, study...)，用副詞比較級修飾動作。", 
                             examples: [
-                                "The window is not only clean but also bright. (形容詞)",
-                                "The kid can not only draw but also write. (動詞)",
-                                "Not only the moon but also the lights are bright. (動詞 are 配合 B: the lights)",
-                                "Not only Sam but also Cali works at the store. (動詞 works 配合 B: Cali)"
+                                "He is taller than me. (Be動詞 + adj.)",
+                                "She runs faster than her brother. (一般動詞 + adv.)",
+                                "This movie is more interesting than that one."
                             ] 
                         }
                     ],
-                    quiz: generateUnit5QuizPool(),
-                    scramble: generateUnit5GrammarScramble()
+                    quiz: generateUnit1QuizPool(),
+                    scramble: generateUnit1GrammarScramble()
                 }
             },
-            unit6: {
-                title: "Unit 6",
-                vocab: unit6VocabData,
+            unit2: {
+                title: "Unit 2",
+                vocab: unit2VocabData,
                 grammar: {
                     tips: [
-                        { label: "動名詞/不定詞當主詞", text: "視為單數，動詞用 is 或加 s" },
-                        { label: "祈使句", text: "原形動詞開頭 (省略 You)" },
-                        { label: "否定祈使句", text: "Don't / Never + 原形動詞" },
-                        { label: "禮貌用法", text: "加上 Please (放句首或句尾)" }
+                        { label: "名詞子句", text: "that + S + V 當受詞 (that可省)" },
+                        { label: "感官動詞", text: "see/hear + O + VR / V-ing" },
+                        { label: "去 to 法則", text: "感官動詞後面絕對不能接 to V" },
+                        { label: "動詞選擇", text: "VR(事實/全程) vs V-ing(正在進行)" }
                     ],
                     notes: [
                         { 
-                            title: "1. 不定詞／動名詞當主詞 (Subject)", 
-                            rule: "To V... / V-ing... + 單數動詞", 
-                            desc: "當不定詞 (To V) 或動名詞 (V-ing) 當作句子的主詞時，視為一件事情（單數），因此後面的動詞要用單數形式（如 is, helps, makes）。", 
+                            title: "1. 名詞子句：that 子句當受詞", 
+                            rule: "S + V (say/know/hope...) + (that) + S + V ...", 
+                            desc: "這個文法是用來表達「某人說了什麼、知道什麼或希望什麼」，後面的 that + 主詞 + 動詞 其實就是把一整件事當成一個「大受詞」。\n\n💡 **文法重點**\n常接此子句的動詞： say (說), know (知道), think (認為), hope (希望), realize (瞭解), explain (解釋)。\n**省略規則**： 當 that 引導的子句是當「受詞」時，that 通常可以省略。", 
                             examples: [
-                                "Listening to music helps me relax. (聽音樂)", 
-                                "To train a service dog is not easy. (訓練服務犬)", 
-                                "Talking to my fans makes me happy. (跟粉絲說話)"
+                                "I know (that) he is rich. (我知道他很有錢)", 
+                                "She said (that) she was busy. (她說她很忙)", 
+                                "We hope (that) you can come to the party."
                             ] 
                         },
                         { 
-                            title: "2. 祈使句 (Imperative Sentences)", 
-                            rule: "(Don't/Never) + V (原形)...", 
-                            desc: "此句型用來對他人表示命令、指示、請求或建議。以原形動詞開頭，省略主詞 (You)。否定則在動詞前加上 Don't 或 Never，Let's 的話則以 Let's not 開頭。", 
+                            title: "2. 感官動詞：看到/聽到某人做某事", 
+                            rule: "S + 感官動詞 + O + V(原形) / V-ing", 
+                            desc: "感官動詞是用來描述感官（看、聽、感覺）接收到的動作，重點在於受詞後面的動詞形式。\n\n常見動詞： see (看見), watch (觀看), hear (聽見), listen to (聽)。\n\n**用法差別**：\n1. 原形動詞 (VR)： 強調動作的事實或全程。\n2. V-ing： 強調動作正在進行中。\n\n✍️ **考試小訣竅：絕對不能加 \"to\"**\n這是考試最常考的陷阱。選項中如果出現 to + V，直接畫掉。只要記住「不是原形，就是 ing」就能拿分。", 
                             examples: [
-                                "Give me some hints. (省略 You)",
-                                "Please stand up. (加上 Please 表示禮貌)", 
-                                "Never run a red light. (絕對不要...)",
-                                "Let's not eat too much fast food. (我們不要...)"
+                                "I saw him run across the street. (強調看見過馬路的全程)",
+                                "I heard her singing in the room. (強調聽見正在唱歌)",
+                                "We watched them play basketball. (看他們打籃球)"
                             ] 
                         }
                     ],
-                    quiz: generateUnit6QuizPool(),
-                    scramble: generateUnit6GrammarScramble()
+                    quiz: generateUnit2QuizPool(),
+                    scramble: generateUnit2GrammarScramble()
                 }
             }
         };
@@ -798,11 +782,11 @@
             const handleWordClick = (wordObj) => { if (feedback === 'correct') return; if (feedback === 'wrong') setFeedback(null); setAvailableWords(prev => prev.filter(w => w.id !== wordObj.id)); setUserSentence(prev => [...prev, wordObj]); };
             const handleAnswerClick = (wordObj) => { if (feedback === 'correct') return; if (feedback === 'wrong') setFeedback(null); setUserSentence(prev => prev.filter(w => w.id !== wordObj.id)); setAvailableWords(prev => [...prev, wordObj]); };
             const handleTryAgain = () => { setFeedback(null); setShowHelperHint(true); setTimeout(() => setShowHelperHint(false), 5000); };
-          const handleMagicHint = () => {
+            const handleMagicHint = () => {
                 if (feedback === 'correct') return;
-                setFeedback(null); 
+                setFeedback(null);
                 
-                // 找出第一個錯誤的位置
+                // 1. 找出第一個錯誤的位置
                 let firstWrongIndex = -1;
                 for (let i = 0; i < userSentence.length; i++) { 
                     if (!userSentence[i].id.startsWith(`${i}-`)) { 
@@ -810,37 +794,27 @@
                         break; 
                     } 
                 }
+                // 如果目前填的都對，位置就是下一個空格
                 if (firstWrongIndex === -1) firstWrongIndex = userSentence.length;
                 
-                // 計算總字數，避免溢位
+                // 檢查是否已全部完成
                 const totalWords = userSentence.length + availableWords.length;
                 if (firstWrongIndex >= totalWords) return;
 
-                const correctPart = userSentence.slice(0, firstWrongIndex);
-                const wrongPart = userSentence.slice(firstWrongIndex);
+                // 2. 找出正確的單字物件
                 const targetIdPrefix = `${firstWrongIndex}-`;
-
-                // 尋找正確的那個字
-                let nextWordObj = availableWords.find(w => w.id.startsWith(targetIdPrefix));
-                let newAvailable = [...availableWords]; 
+                const allWords = [...userSentence, ...availableWords];
+                const nextWordObj = allWords.find(w => w.id.startsWith(targetIdPrefix));
 
                 if (nextWordObj) {
-                    // 情況A: 字在備選區
-                    newAvailable = newAvailable.filter(w => w.id !== nextWordObj.id);
-                } else {
-                    // 情況B: 字在使用者錯誤區
-                    nextWordObj = wrongPart.find(w => w.id.startsWith(targetIdPrefix));
-                }
+                    // 3. 重組狀態：保留前面正確的 + 補上這一個正確的
+                    const newCorrectUserSentence = [...userSentence.slice(0, firstWrongIndex), nextWordObj];
+                    
+                    // 4. 剩下的字全部放回待選區 (過濾掉已經在答案區的字)
+                    const newAvailableWords = allWords.filter(w => !newCorrectUserSentence.some(cw => cw.id === w.id));
 
-                // 把剩下在錯誤區的字，全部丟回備選區
-                if (wrongPart.length > 0) {
-                     const others = wrongPart.filter(w => w && w.id !== (nextWordObj ? nextWordObj.id : ''));
-                     newAvailable = [...newAvailable, ...others];
-                }
-
-                if (nextWordObj) {
-                    setUserSentence([...correctPart, nextWordObj]);
-                    setAvailableWords(newAvailable);
+                    setUserSentence(newCorrectUserSentence);
+                    setAvailableWords(newAvailableWords);
                     speakText(nextWordObj.text);
                 }
             };
@@ -1586,7 +1560,7 @@
         // --- Main App Container ---
         function Unit56App() {
             const [activeTab, setActiveTab] = useState('study');
-            const [currentUnit, setCurrentUnit] = useState('unit5'); 
+            const [currentUnit, setCurrentUnit] = useState('unit1'); 
 
             const unitTitle = UNITS_DATA[currentUnit].title;
             const unitData = UNITS_DATA[currentUnit].vocab;
@@ -1601,7 +1575,7 @@
                     <div className="flex justify-between items-center mb-3 bg-slate-100 p-2 rounded-2xl border-2 border-slate-200 overflow-x-auto">
                         <div className="flex items-center gap-2 font-black text-slate-600 text-lg tracking-tight ml-2 mr-2 whitespace-nowrap"><Map className="w-6 h-6 text-sky-500" /><span>MAP</span></div>
                         <div className="flex gap-2">
-                            {['unit5', 'unit6'].map(uKey => (
+                            {['unit1', 'unit2'].map(uKey => (
                             <button key={uKey} onClick={() => setCurrentUnit(uKey)} className={`px-3 py-1 text-xs sm:text-sm font-black rounded-xl transition-all border-b-4 active:border-b-0 active:translate-y-1 whitespace-nowrap ${currentUnit === uKey ? 'bg-sky-500 border-sky-700 text-white shadow-sky-200' : 'bg-white border-slate-300 text-slate-400 hover:bg-slate-50'}`}>{UNITS_DATA[uKey].title}</button>
                             ))}
                         </div>
